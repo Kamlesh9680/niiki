@@ -1,0 +1,265 @@
+.admin-login-wrapper {
+    height: 100vh;
+    width: 100%;
+    background-color: #121622;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.admin-login {
+    width: 480px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.admin-login .logo {
+    height: 80px;
+    margin-bottom: 10px;
+}
+
+.dashboard-container {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+    padding: 0;
+}
+
+.main-content {
+    flex: 1;
+    background-color: #f4f6f9;
+    overflow-y: auto;
+}
+
+.dash-content-wrap {
+    padding: 20px;
+}
+
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #101e42;
+    padding: 15px 20px;
+    color: #fff;
+}
+
+.search-bar {
+    width: 250px;
+    padding: 12px 10px;
+    border: none;
+    background-color: #2c3566;
+    color: #cfcfcf;
+    border-radius: 4px;
+}
+
+.search-bar:active,
+.search-bar:focus {
+    border: none;
+    outline: none;
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+}
+
+.avatar {
+    border-radius: 50%;
+    margin-left: 10px;
+}
+
+.stats-cards,
+.stats-cards2 {
+    margin-top: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+
+.stats-cards .card,
+.stats-cards2 .card {
+    padding: 25px 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: calc(50% - 15px);
+    margin-bottom: 15px;
+    text-decoration: none;
+    color: #fff;
+}
+
+.stats-cards2 .card {
+    justify-content: start;
+    gap: 10px;
+}
+
+.stats-cards2 .card {
+    color: #333;
+    position: relative;
+}
+
+.stats-cards .card .stats-cards-inner,
+.stats-cards2 .card .stats-cards-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+}
+
+.stats-cards2 .card .stats-cards-inner {
+    align-items: start;
+}
+
+.stats-cards2 .card .view-all {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    text-decoration: none;
+}
+
+.stats-cards .card .stats-cards-inner h3,
+.stats-cards2 .card .stats-cards-inner h3 {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.stats-cards .card .stats-cards-inner p,
+.stats-cards2 .card .stats-cards-inner p {
+    font-size: 30px;
+    font-weight: 500;
+}
+
+.stats-cards .card:nth-child(1) {
+    background-color: #4634FF;
+}
+
+.stats-cards .card:nth-child(2) {
+    background-color: #28C76F;
+}
+
+.stats-cards .card:nth-child(3) {
+    background-color: #EA5455;
+}
+
+.stats-cards .card:nth-child(4) {
+    background-color: #F44336;
+}
+
+.dash-head {
+    margin-top: 20px;
+}
+
+.card h3 {
+    margin: 0;
+}
+
+.card p {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.stats-cards .icon,
+.stats-cards2 .icon {
+    font-size: 3.5rem;
+    margin-right: 15px;
+}
+
+.sidebar {
+    width: 250px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-right: 1px solid #8a8a8a;
+}
+
+.sidebar-nav-wrap {
+    overflow-y: auto;
+    position: relative;
+    width: 100%;
+}
+
+.sidebar-nav-wrap::-webkit-scrollbar {
+    width: 5px;
+    background-color: white;
+    border-radius: 5px;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.sidebar-nav-wrap::-webkit-scrollbar-thumb {
+    background-color: #445c97;
+    border-radius: 5px;
+
+}
+
+.sidebar-logo {
+    padding: 20px;
+}
+
+.sidebar-logo img {
+    width: 60px;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+    margin: 0 auto;
+}
+
+nav ul li {
+    width: 100%;
+    transition: all ease-in .5s;
+}
+
+nav ul li a {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    color: white;
+    text-decoration: none;
+    width: 100%;
+}
+
+nav ul li svg {
+    margin-right: 10px;
+}
+
+nav ul li a:hover {
+    background-color: #152c5b;
+}
+
+nav ul li .dropdown-header {
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.dropdown-menu {
+
+    background-color: #152c5b;
+    transition: all ease-in .2s;
+}
+
+.dropdown-menu li {
+    padding-left: 25px;
+}
+
+.dropdown-menu li a {
+    color: white;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.dropdown-menu li a:hover {
+    background-color: #1a376c;
+}

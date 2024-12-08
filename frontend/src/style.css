@@ -1,0 +1,224 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100%;
+  width: 100%;
+  background-color: gray;
+}
+
+@font-face {
+  font-family: Heading;
+  src: url(/public/font/Navi_Headline_Regular.woff2);
+}
+
+@font-face {
+  font-family: Body;
+  src: url(/public/font/Navi_Body_Regular.woff2);
+}
+
+@font-face {
+  font-family: BodyBold;
+  src: url(/public/font/Navi_Body_DemiBold.woff2);
+}
+
+.page-wrapper {
+  /* max-width: 480px; */
+  min-height: 100vh;
+  margin: 0 auto;
+  background-color: white;
+  font-family: Body;
+}
+
+h1,
+h2 {
+  font-family: Heading;
+}
+
+.page-container {
+  padding: 1.5rem 1rem 6rem 1rem 
+  !important;
+  position: relative;
+  z-index: 0;
+}
+
+.page-container-two {
+  padding: 0rem 0rem 6rem 0;
+}
+
+.page-container-inner {
+  padding: 1rem;
+}
+
+.first-coin-offer h2 {
+  font-weight: 600;
+  font-size: 22px;
+}
+
+.first-coin-offer p {
+  font-weight: 600;
+}
+
+.top-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.top-buttons a {
+  /* width: 25%; */
+  padding: 0.25rem;
+}
+
+.top-btn-icon {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  background-color: #81f8c3;
+}
+
+.theme-btn-wrap {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.theme-btn {
+  border: none;
+  padding: 9px 12px;
+  border-radius: 5px;
+  background-color: #3c0050;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-family: BodyBold;
+}
+
+.theme-btn-white {
+  border: none;
+  padding: 9px 18px;
+  border-radius: 5px;
+  background-color: #fff;
+  color: #3c0050;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-family: BodyBold;
+}
+
+.theme-btn-border {
+  border: 1px solid #999;
+  padding: 8px 12px;
+  border-radius: 5px;
+  background-color: white;
+  color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-family: BodyBold;
+}
+
+.explore-boxes {
+  gap: 1rem;
+}
+
+.explore-box p {
+  font-size: 14px;
+}
+
+.l-coming-soon-box {
+  background-color: #3c0050;
+  padding: 1.5rem 1rem;
+}
+
+.hl-coming-soon-box {
+  padding: 1.5rem 1rem;
+}
+
+.loan-benefits-boxes {
+  gap: 0.5rem;
+}
+
+.loan-benefit-box {
+  width: calc(33% - 0.5rem);
+  margin-bottom: 0.5rem;
+}
+
+.loan-benfit-txt {
+  font-size: 14px;
+}
+
+.loan-know-more-box li {
+  margin-bottom: 0.5rem;
+}
+
+.loan-know-more-box li::before {
+  content: "✓";
+  color: green;
+  margin-right: 10px;
+}
+
+.loan-know-more-btn a {
+  text-decoration: underline;
+}
+
+.i-top-box {
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  background-color: white;
+}
+
+.top-fund-box {
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  padding-right: 1rem !important;
+}
+
+.redemption p {
+  background-color: #0a6d3d;
+  color: #fff;
+  padding: 4px 10px;
+  border-radius: 50px;
+}
+
+.fund-category-box {
+  margin-bottom: 1rem;
+}
+
+.fund-cat-icon {
+  background-color: #fdf7ca;
+  padding: 0.8rem;
+  border-radius: 4px;
+}
+
+.bg-gra-yellow-top {
+  background: linear-gradient(to top, #ffffff, #fcf3b2);
+}
+
+.bg-gra-yellow {
+  background: linear-gradient(to bottom, #ffffff, #fcf3b2);
+}
+
+.top-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 250px;
+  z-index: -1;
+  width: 100%;
+}
+
+.bottom-bg {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 300px;
+  z-index: -1;
+  width: 100%;
+}
