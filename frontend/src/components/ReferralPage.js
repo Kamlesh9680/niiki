@@ -11,7 +11,7 @@ const ReferralPage = () => {
             try {
                 const userId = JSON.parse(localStorage.getItem("user")).id;
 
-                const response = await fetch(`http://localhost:5000/api/user/referrals/${userId}`, {
+                const response = await fetch(`/api/user/referrals/${userId}`, {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",

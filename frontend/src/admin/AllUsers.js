@@ -12,7 +12,7 @@ const AllUsers = () => {
     useEffect(() => {
         const fetchAllUsers = async () => {
             try {
-                const response = await fetch('http://localhost:5000/api/admin/users-data');
+                const response = await fetch('/api/admin/users-data');
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }

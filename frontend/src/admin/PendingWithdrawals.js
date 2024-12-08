@@ -10,7 +10,7 @@ const PendingWithdrawals = () => {
     useEffect(() => {
         const fetchPendingWithdrawals = async () => {
             try {
-                const response = await fetch('http://localhost:5000/api/admin/users-withdraw-data');
+                const response = await fetch('/api/admin/users-withdraw-data');
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }

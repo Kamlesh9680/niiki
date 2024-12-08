@@ -12,7 +12,7 @@ const RejectedDeposits = () => {
     useEffect(() => {
         const fetchRejectedDeposits = async () => {
             try {
-                const response = await fetch('http://localhost:5000/api/admin/users-deposit-data');
+                const response = await fetch('/api/admin/users-deposit-data');
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }

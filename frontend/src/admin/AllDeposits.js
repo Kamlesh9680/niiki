@@ -11,7 +11,7 @@ const AllDeposits = () => {
     useEffect(() => {
         const fetchAllDeposits = async () => {
             try {
-                const response = await fetch('http://localhost:5000/api/admin/users-deposit-data'); // Adjust the API endpoint as necessary
+                const response = await fetch('/api/admin/users-deposit-data'); // Adjust the API endpoint as necessary
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }

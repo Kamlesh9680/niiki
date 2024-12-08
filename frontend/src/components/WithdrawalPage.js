@@ -23,7 +23,7 @@ const WithdrawalPage = () => {
         try {
             const userId = JSON.parse(localStorage.getItem("user")).id;
 
-            const response = await fetch("http://localhost:5000/api/withdraw-request", {
+            const response = await fetch("/api/withdraw-request", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

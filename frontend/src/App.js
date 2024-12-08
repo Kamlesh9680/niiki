@@ -18,7 +18,7 @@ const PageWrapper = () => {
       try {
         const user = JSON.parse(localStorage.getItem("user"));
         if (user) {
-          const response = await axios.get(`http://localhost:5000/api/user/deposit-status/${user.id}`);
+          const response = await axios.get(`/api/user/deposit-status/${user.id}`);
           const isDepositCompleted = response.data.firstDepositCompleted;
           setFirstDepositCompleted(isDepositCompleted);
           setShowModal(!isDepositCompleted);

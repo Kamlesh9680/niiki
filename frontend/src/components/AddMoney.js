@@ -52,7 +52,7 @@ const AddMoney = () => {
 
         try {
             // Send the deposit data to the backend via a POST request
-            const response = await axios.post('http://localhost:5000/api/deposit-request', depositData);
+            const response = await axios.post('/api/deposit-request', depositData);
 
             if (response.data.success) {
                 toast.success("Deposit request submitted successfully!");

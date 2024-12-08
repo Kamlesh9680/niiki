@@ -12,7 +12,7 @@ const WalletPage = () => {
     useEffect(() => {
         const fetchWalletDetails = async () => {
             try {
-                const response = await fetch(`http://localhost:5000/api/user/wallet?userId=${userId}`, {
+                const response = await fetch(`/api/user/wallet?userId=${userId}`, {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",

@@ -21,7 +21,7 @@ const DepositDetails = () => {
 
         const fetchDepositDetails = async () => {
             try {
-                const response = await fetch(`http://localhost:5000/api/admin/deposits/${depositId}`); // Adjust API endpoint
+                const response = await fetch(`/api/admin/deposits/${depositId}`); // Adjust API endpoint
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
@@ -42,7 +42,7 @@ const DepositDetails = () => {
 
     const handleApprove = async () => {
         try {
-            const response = await fetch(`http://localhost:5000/api/admin/deposits/approve/${depositId}`, {
+            const response = await fetch(`/api/admin/deposits/approve/${depositId}`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -67,7 +67,7 @@ const DepositDetails = () => {
 
     const handleDecline = async () => {
         try {
-            const response = await fetch(`http://localhost:5000/api/admin/deposits/decline/${depositId}`, {
+            const response = await fetch(`/api/admin/deposits/decline/${depositId}`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' }
             });

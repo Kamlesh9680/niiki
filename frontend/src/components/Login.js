@@ -32,7 +32,7 @@ const Login = () => {
             setError(""); // Clear any previous error
 
             // Make a POST request to the backend
-            const response = await fetch("http://localhost:5000/api/login", {
+            const response = await fetch("/api/login", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

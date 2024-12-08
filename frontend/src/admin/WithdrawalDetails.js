@@ -15,7 +15,7 @@ const WithdrawalDetails = () => {
         }
         const fetchWithdrawalDetails = async () => {
             try {
-                const response = await fetch(`http://localhost:5000/api/admin/withdrawals/${withdrawalId}`);
+                const response = await fetch(`/api/admin/withdrawals/${withdrawalId}`);
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
@@ -34,7 +34,7 @@ const WithdrawalDetails = () => {
 
     const handleApprove = async () => {
         try {
-            await fetch(`http://localhost:5000/api/admin/withdraw/deduct/${withdrawalId}`, {
+            await fetch(`/api/admin/withdraw/deduct/${withdrawalId}`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ amount: withdrawalDetails.amount }),
@@ -54,7 +54,7 @@ const WithdrawalDetails = () => {
 
     const handleDecline = async () => {
         try {
-            await fetch(`http://localhost:5000/api/admin/withdrawals/decline/${withdrawalId}`, {
+            await fetch(`/api/admin/withdrawals/decline/${withdrawalId}`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
             });

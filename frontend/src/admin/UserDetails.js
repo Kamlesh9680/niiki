@@ -17,7 +17,7 @@ const UserDetails = () => {
     useEffect(() => {
         const fetchUserDetails = async () => {
             try {
-                const response = await fetch(`http://localhost:5000/api/admin/${userId}`);
+                const response = await fetch(`/api/admin/${userId}`);
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
@@ -36,7 +36,7 @@ const UserDetails = () => {
 
     const handleIncreaseBalance = async () => {
         try {
-            const response = await fetch(`http://localhost:5000/api/admin/increase-balance/${userId}`, {
+            const response = await fetch(`/api/admin/increase-balance/${userId}`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ amount: parseFloat(amount) }),
@@ -60,7 +60,7 @@ const UserDetails = () => {
 
     const handleDecreaseBalance = async () => {
         try {
-            const response = await fetch(`http://localhost:5000/api/admin/decrease-balance/${userId}`, {
+            const response = await fetch(`/api/admin/decrease-balance/${userId}`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ amount: parseFloat(amount) }),
@@ -84,7 +84,7 @@ const UserDetails = () => {
 
     const handleBanUser = async () => {
         try {
-            const response = await fetch(`http://localhost:5000/api/admin/ban-user/${userId}`, {
+            const response = await fetch(`/api/admin/ban-user/${userId}`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ status: 'banned' }),
@@ -103,7 +103,7 @@ const UserDetails = () => {
 
     const handleUnBanUser = async () => {
         try {
-            const response = await fetch(`http://localhost:5000/api/admin/unban-user/${userId}`, {
+            const response = await fetch(`/api/admin/unban-user/${userId}`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ status: 'active' }),
