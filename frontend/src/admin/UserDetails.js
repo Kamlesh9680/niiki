@@ -142,6 +142,7 @@ const UserDetails = () => {
                                     <th>Phone:</th>
                                     <th>User Balance:</th>
                                     <th>Status:</th>
+                                    <th>Referrals:</th>
                                     <th>Date Joined:</th>
                                     <th>User Invite Code:</th>
                                     <th>User Password:</th>
@@ -156,6 +157,7 @@ const UserDetails = () => {
                                     <td>{userDetails.phone}</td>
                                     <td>{userDetails.balance}</td>
                                     <td>{userDetails.status}</td>
+                                    <td>{userDetails.referrals.length}</td>
                                     <td>{new Date(userDetails.createdAt).toLocaleDateString()}</td>
                                     <td>{userDetails.inviteCode}</td>
                                     <td>{userDetails.password}</td>
