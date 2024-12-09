@@ -16,7 +16,7 @@ const Header = () => {
                 <input
                     type="text"
                     placeholder="Search..."
-                    className="w-full border-none text-black  rounded-full px-4 py-2 text-sm focus:outline-none"
+                    className="w-full border-2 text-black border-gray-300 rounded-full px-4 py-2 text-sm focus:outline-none"
                 />
             </div>
 
