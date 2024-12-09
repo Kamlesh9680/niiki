@@ -96,7 +96,7 @@ const AddMoney = () => {
                         </div>
                         <a
                             className="upi-pay-now theme-btn-border hover:text-white py-2 rounded-lg text-center block mb-6 hover:bg-customPurple transition duration-300"
-                            href={`upi://pay?pa=<YourUpiId>&cu=INR&am=${amount}`}
+                            href={`upi://pay?pa=8094952285@axl&cu=INR&am=${amount}`}
                         >
                             Pay Now With UPI App
                         </a>
