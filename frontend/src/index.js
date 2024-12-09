@@ -53,9 +53,9 @@ root.render(
             path="/"
             element={
               <>
-                <Header />
+                {/* <Header /> */}
                 <Outlet />
-                <BottomNav />
+                {/* <BottomNav /> */}
               </>
             }
           >

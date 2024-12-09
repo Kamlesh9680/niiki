@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import axios from 'axios';
 import { toast } from "react-toastify";
+import BottomNav from '../components/BottomNav';
+import Header from '../components/Header';
 
 const formatCurrency = (value) => {
     return `₹${value.toLocaleString()}`;
@@ -68,7 +70,8 @@ const AddMoney = () => {
     };
 
     return (
-        <div className="page-wrapper max-w-[480px] mx-auto py-8 px-4">
+        <div className="page-wrapper max-w-[480px] mx-auto pb-8">
+            <Header />
             <div className="page-container">
                 <div className="text-center mb-6">
                     <h1 className="text-3xl font-bold text-customPurple">Add Money</h1>
@@ -91,12 +94,18 @@ const AddMoney = () => {
                                 className="w-60 h-60 rounded-lg border-2 border-gray-300"
                             />
                         </div>
+                        <a
+                            className="upi-pay-now theme-btn-border hover:text-white py-2 rounded-lg text-center block mb-6 hover:bg-customPurple transition duration-300"
+                            href={`upi://pay?pa=<YourUpiId>&cu=INR&am=${amount}`}
+                        >
+                            Pay Now With UPI App
+                        </a>
                         <p className="text-gray-700">After payment, enter the transaction ID below.</p>
                     </div>
 
                     <form onSubmit={handleSubmit} className="space-y-4 mt-6">
-                        <div className="flex justify-between items-center">
-                            <label htmlFor="upiTransactionId" className="text-gray-800 font-medium">UPI Transaction ID</label>
+                        <div className="flex flex-col gap-2 mb-3">
+                            <label htmlFor="upiTransactionId" className="text-gray-800 font-medium">UPI Transaction ID:</label>
                             <input
                                 type="text"
                                 id="upiTransactionId"
@@ -118,6 +127,7 @@ const AddMoney = () => {
                     </form>
                 </div>
             </div>
+            <BottomNav />
         </div>
     );
 };

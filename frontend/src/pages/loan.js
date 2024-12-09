@@ -3,6 +3,7 @@ import "../style.css";
 import "../reusable.css";
 import { Link } from "react-router-dom";
 import { FaFileAlt, FaMoneyBillWave, FaCalendarAlt, FaClipboard, FaPercent, FaLock } from "react-icons/fa";
+import BottomNav from '../components/BottomNav';
 
 const LoanPage = () => {
     const cashLoanBenefits = [
@@ -99,6 +100,7 @@ const LoanPage = () => {
                     </div>
                 </div>
             </div>
+            <BottomNav />
         </div>
     );
 };

@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaWallet, FaUserFriends, FaQrcode, FaAngleRight, FaBell, FaSignOutAlt } from "react-icons/fa";
+import BottomNav from '../components/BottomNav';
+import Header from '../components/Header';
 
 const ProfilePage = () => {
     // Mock user data (Replace with actual fetched data)
@@ -45,10 +47,10 @@ const ProfilePage = () => {
     ];
 
     return (
-        <div className="page-wrapper max-w-[480px] mx-auto">
-            <div className="page-container">
+        <div className="relative page-wrapper max-w-[480px] mx-auto z-0">
+            <Header />
                 <div className="top-bg bg-gra-yellow-top"></div>
-
+            <div className="page-container">
                 <div className="flex items-center gap-6 py-6 px-4 rounded-md shadow-md">
                     <div className="user-img w-16">
                         <img src="/user.png" className="rounded-full" alt='userimg' />
@@ -86,6 +88,7 @@ const ProfilePage = () => {
                 </div>
 
             </div>
+            <BottomNav />
         </div>
     );
 };

@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { toast } from "react-toastify";
+import BottomNav from '../components/BottomNav';
+import Header from '../components/Header';
 
 const WithdrawalPage = () => {
     const [amount, setAmount] = useState("");
@@ -54,6 +56,7 @@ const WithdrawalPage = () => {
 
     return (
         <div className="page-wrapper max-w-[480px] mx-auto">
+            <Header />
             <div className="page-container py-6 px-4">
                 <h1 className="text-xl font-bold text-customPurple text-center mb-4">
                     Withdrawal Page
@@ -92,16 +95,16 @@ const WithdrawalPage = () => {
                     <button
                         onClick={handleWithdraw}
                         disabled={loading}
-                        className={`w-full px-4 py-2 font-bold rounded ${
-                            loading
+                        className={`w-full px-4 py-2 font-bold rounded ${loading
                                 ? "bg-gray-400 cursor-not-allowed"
                                 : "bg-customPurple text-white hover:bg-purple-900"
-                        }`}
+                            }`}
                     >
                         {loading ? "Submitting..." : "Withdraw"}
                     </button>
                 </div>
             </div>
+            <BottomNav />
         </div>
     );
 };

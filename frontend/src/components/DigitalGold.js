@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import BottomNav from '../components/BottomNav';
+import Header from '../components/Header';
 
 const DigitalGold = () => {
     const [amount, setAmount] = useState(10); // Default minimum amount
@@ -26,6 +27,7 @@ const DigitalGold = () => {
 
     return (
         <div className="page-wrapper max-w-[480px] mx-auto">
+            <Header />
             <div className="page-container">
                 <div className="text-center mb-6">
                     <h1 className="text-3xl font-bold text-customPurple">Buy Digital Gold</h1>
@@ -69,6 +71,7 @@ const DigitalGold = () => {
                     <p className="mt-2">Digital gold offers you the flexibility to invest in gold with just a click. No need for storage or physical handling. It's secure, and your investment grows with time.</p>
                 </div>
             </div>
+            <BottomNav />
         </div>
     );
 };

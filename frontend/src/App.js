@@ -5,6 +5,8 @@ import { FaMobileAlt, FaUniversity, FaHistory, FaWallet, FaBolt, FaEllipsisH, Fa
 import { useNavigate, Link } from "react-router-dom";
 import Modal from "react-modal";
 import axios from "axios";
+import BottomNav from './components/BottomNav';
+import Header from './components/Header';
 
 Modal.setAppElement("#root");
 
@@ -33,11 +35,14 @@ const PageWrapper = () => {
 
   return (
     <div className="page-wrapper max-w-[480px] mx-auto">
+
+      <UPIComponent />
       <PageContainer />
+      <BottomNav />
       <Modal
         isOpen={showModal}
         contentLabel="Complete First Deposit"
-        className="flex items-center justify-center"
+        className="flex items-center justify-center outline-none"
         overlayClassName="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center"
       >
         <div className="flex flex-col items-center bg-white rounded-lg shadow-lg p-6 w-11/12 max-w-md mx-auto">
@@ -72,10 +77,29 @@ const PageContainer = () => {
     </div>
   );
 };
+const UPIComponent = () => {
+  return (
+    <div className="bg-green-500 text-center w-full text-white">
+      <Header />
+      <div className="p-6">
+        <div className="bg-customPurple text-white text-s font-bold px-3 py-1 inline-block mb-4">
+          Niiki UPI
+        </div>
+        <h1 className="text-3xl font-bold text-white mb-2">Payments made easy with</h1>
+        <h2 className="text-4xl font-bold text-white">Niiki UPI</h2>
+        <p className="text-sm text-white mt-2 mb-6">Fast, secure and reliable</p>
+        <button className="bg-white text-green-500 font-semibold text-lg px-6 py-2 rounded-lg hover:bg-gray-100 transition-all flex items-center justify-center mx-auto">
+          Scan & pay
+          <span className="ml-2">&rarr;</span>
+        </button>
+      </div>
+    </div>
+  );
+};
 
 const FirstCoinOffer = () => (
   <div className="first-coin-offer text-center mb-6">
-    <h2 className="c-purple">Get flat 10 (₹10)</h2>
+    <h2 className="c-purple flex text-center items-center justify-center">Get flat <img src="/coin.png" className="w-8" alt="coin" /> 20 (₹20)</h2>
     <p className="c-purple">in your first UPI payment</p>
   </div>
 );
@@ -91,7 +115,7 @@ const TopButtons = () => {
   return (
     <div className="top-buttons mb-4">
       {buttonData.map((button, index) => (
-        <Link to="/comingsoon" className="item-center-col" key={index}>
+        <Link to="/comingsoon" className="flex flex-col items-center " key={index}>
           <div className="top-btn-icon mb-2 item-center">{button.icon}</div>
           {button.text}
         </Link>
@@ -131,7 +155,7 @@ const DigitalGoldBox = () => (
       <div>
         <img src="/coin.png" className="w-20" alt="coin" />
       </div>
-      <span className="bg-customPurple text-white rounded-full px-4 py-1 absolute -top-4 left-40">Available Now</span>
+      <span className="bg-customPurple text-white rounded-full px-4 py-1 absolute -top-4">Available Now</span>
     </div >
   </Link>
 );
@@ -151,9 +175,9 @@ const BillPayments = () => {
         <p className="c-gray fs-14">₹ 0 PLATFORM FEE</p>
       </div>
       <div className="bill-pay-boxes border rounded-md pt-3">
-        <div className="bill-pay-boxes-wrap flex items-center justify-between px-3">
+        <div className="bill-pay-boxes-wrap flex items-stretch px-3 gap-1">
           {billPaymentData.map((item, index) => (
-            <Link className="bill-pay-box item-center-col" to="/comingsoon" key={index}>
+            <Link className="bill-pay-box flex flex-col items-center w-1/4 text-center" to="/comingsoon" key={index}>
               <div className="bill-pay-icon mb-2">{item.icon}</div>
               {item.text}
             </Link>
@@ -169,10 +193,10 @@ const BillPayments = () => {
 
 const ExploreOptions = () => {
   const exploreData = [
-    { text: "Health Insurance", icon: <FaHeartbeat size={24} /> },
-    { text: "Digital Gold", icon: <FaCoins size={24} /> },
-    { text: "Mutual Fund", icon: <FaChartLine size={24} /> },
-    { text: "Cash loan", icon: <FaMoneyBillWave size={24} /> },
+    { text: "Health Insurance", icon: 'https://navi.com/static/media/insurance%20web.6a335047.svg' },
+    { text: "Digital Gold", icon: "https://public-assets.prod.navi-tech.in/navi-website-assests/images/Nifty50ETFFund/Nifty50ETFHeroBanner.svg" },
+    { text: "Mutual Fund", icon: 'https://navi.com/static/media/nifty50.470a8913.webp' },
+    { text: "Cash loan", icon: 'https://public-assets.prod.navi-tech.in/navi-website-assests/images/personal-loan/Web/CL_web.webp' },
   ];
 
   return (
@@ -184,7 +208,7 @@ const ExploreOptions = () => {
             <p>
               {item.text.split(" ")[0]} <br /> {item.text.split(" ")[1]}
             </p>
-            <div className="explore-icon mb-2 mt-3 item-center">{item.icon}</div> {/* Render icon */}
+            <div className="explore-icon mb-2 mt-3 item-center"><img src={item.icon} alt="icon" className="w-14" /></div>
           </Link>
         ))}
       </div>

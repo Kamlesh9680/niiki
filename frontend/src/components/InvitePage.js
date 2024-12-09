@@ -1,5 +1,7 @@
 import React from "react";
 import { toast } from "react-toastify";
+import BottomNav from '../components/BottomNav';
+import Header from '../components/Header';
 
 const InvitePage = () => {
     const user = JSON.parse(localStorage.getItem("user"));
@@ -30,6 +32,7 @@ const InvitePage = () => {
 
     return (
         <div className="page-wrapper max-w-[480px] mx-auto">
+            <Header />
             <div className="page-container">
                 <div className="max-w-md mx-auto p-4 bg-white shadow rounded">
                     <h1 className="text-xl font-bold text-center mb-4">Invite Friends</h1>
@@ -66,6 +69,7 @@ const InvitePage = () => {
                     )}
                 </div>
             </div>
+            <BottomNav />
         </div>
     );
 };

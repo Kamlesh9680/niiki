@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { FaAngleRight } from "react-icons/fa";
 import { FaChartPie, FaChartBar, FaLayerGroup, FaChartLine, FaRocket, FaClock, FaDollarSign } from "react-icons/fa";
 import { GiFactory, GiReceiveMoney } from "react-icons/gi";
+import BottomNav from '../components/BottomNav';
 
 const Investment = () => {
     return (
@@ -72,6 +73,7 @@ const Investment = () => {
                 <WhyInvest />
                 <div className="bottom-bg bg-gra-yellow"></div>
             </div>
+            <BottomNav />
         </div>
     );
 };

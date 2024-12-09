@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import BottomNav from '../components/BottomNav';
+import Header from '../components/Header';
 
 const ReferralPage = () => {
     const [referrals, setReferrals] = useState([]);
@@ -36,6 +38,7 @@ const ReferralPage = () => {
 
     return (
         <div className="page-wrapper max-w-[480px] mx-auto">
+            <Header />
             <div className="page-container py-6 px-4">
                 <h1 className="text-xl font-bold text-customPurple text-center mb-4">
                     Referral Dashboard
@@ -76,6 +79,7 @@ const ReferralPage = () => {
                     )}
                 </div>
             </div>
+            <BottomNav />
         </div>
     );
 };

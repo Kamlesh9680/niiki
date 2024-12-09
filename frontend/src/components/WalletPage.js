@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import BottomNav from '../components/BottomNav';
+import Header from '../components/Header';
 
 const WalletPage = () => {
     const [balance, setBalance] = useState(0);
@@ -45,6 +47,7 @@ const WalletPage = () => {
 
     return (
         <div className="page-wrapper max-w-[480px] mx-auto">
+            <Header />
             <div className="page-container">
                 <div className="max-w-md mx-auto py-6">
                     <h1 className="text-xl font-bold text-customPurple text-center mb-4">Your Wallet</h1>
@@ -108,6 +111,7 @@ const WalletPage = () => {
 
                 </div>
             </div>
+            <BottomNav />
         </div>
     )
 };
