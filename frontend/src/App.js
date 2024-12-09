@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import "./style.css";
 import "./reusable.css";
-import { FaMobileAlt, FaUniversity, FaHistory, FaWallet, FaBolt, FaEllipsisH, FaCreditCard, FaHeartbeat, FaCoins, FaChartLine, FaMoneyBillWave } from "react-icons/fa";
+import { FaMobileAlt, FaUniversity, FaHistory, FaWallet, FaBolt, FaEllipsisH, FaCreditCard, FaHeartbeat, FaCoins, FaChartLine, FaBell } from "react-icons/fa";
 import { useNavigate, Link } from "react-router-dom";
 import Modal from "react-modal";
 import axios from "axios";
 import BottomNav from './components/BottomNav';
 import Header from './components/Header';
-
+import { MdNotificationsActive } from "react-icons/md";
 Modal.setAppElement("#root");
 
 const PageWrapper = () => {
@@ -45,18 +45,21 @@ const PageWrapper = () => {
         className="flex items-center justify-center outline-none"
         overlayClassName="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center"
       >
-        <div className="flex flex-col items-center bg-white rounded-lg shadow-lg p-6 w-11/12 max-w-md mx-auto">
+        <div className="relative flex flex-col items-center bg-white rounded-lg shadow-lg p-6 pt-12 w-11/12 max-w-md mx-auto">
+          <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 w-16 h-16 bg-gray-200 rounded-full flex items-center justify-center ">
+            <MdNotificationsActive className="text-customPurple text-4xl" />
+          </div>
           <h2 className="text-xl font-bold mb-4 text-center">Complete Your First Deposit</h2>
-          <p className="text-gray-700 mb-2 text-center">You need to complete your first deposit of ₹10 to proceed further in the app.</p>
-          <p className="text-green-600 font-semibold mb-4 text-center">Earn ₹50/referral</p>
+          <p className="text-gray-700 mb-4 text-center">You need to complete your first deposit of ₹10 to proceed further in the app.</p>
           <button
-            className="theme-btn-border"
+            className="theme-btn"
             onClick={() => {
               navigate("/addmoney?fromModal=true");
             }}
           >
-            Go to First Deposit
+            Go to First Deposit ₹10
           </button>
+          <p className="text-red-600 font-semibold mt-4 text-center">Earn ₹50/referral</p>
         </div>
       </Modal>
 

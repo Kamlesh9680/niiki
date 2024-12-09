@@ -35,7 +35,8 @@ const InvitePage = () => {
             <Header />
             <div className="page-container">
                 <div className="max-w-md mx-auto p-4 bg-white shadow rounded">
-                    <h1 className="text-xl font-bold text-center mb-4">Invite Friends</h1>
+                    <h1 className="text-xl font-bold text-center">Invite Friends</h1>
+                    <p className="c-purple flex text-center items-center justify-center mb-4">Get flat <img src="/coin.png" className="w-8" alt="coin" /> 50 (₹50)/refer</p>
 
                     {inviteCode ? (
                         <>

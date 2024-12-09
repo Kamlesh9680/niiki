@@ -178,7 +178,22 @@
     align-items: center;
     border-right: 1px solid #8a8a8a;
 }
-
+@media screen and (max-width:767px){
+    .dashboard-container{
+        height: max-content;
+        flex-direction: column;
+    }
+    .sidebar {
+        width: 100%;
+    }
+    .am-btn-wrap{
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    .am-btn-wrap button{
+        width: 100%;
+    }
+}
 .sidebar-nav-wrap {
     overflow-y: auto;
     position: relative;

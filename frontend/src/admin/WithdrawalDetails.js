@@ -87,6 +87,7 @@ const WithdrawalDetails = () => {
                                     <th>User ID</th>
                                     <th>User Email</th>
                                     <th>Withdrawal Amount</th>
+                                    <th>UPI ID</th>
                                     <th>Status</th>
                                     <th>Date Requested</th>
                                 </tr>
@@ -96,6 +97,7 @@ const WithdrawalDetails = () => {
                                     <td>{withdrawalDetails.userId}</td>
                                     <td>{withdrawalDetails.userEmail}</td>
                                     <td>{withdrawalDetails.amount}</td>
+                                    <td>{withdrawalDetails.walletAddress}</td>
                                     <td>{withdrawalDetails.status}</td>
                                     <td>{new Date(withdrawalDetails.createdAt).toLocaleDateString()}</td>
                                 </tr>

@@ -41,22 +41,29 @@ const UserDetails = () => {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ amount: parseFloat(amount) }),
             });
-
+    
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
-
-            // Optionally refresh user details
-            const updatedUser = await response.json();
-            setUserDetails(updatedUser);
-            setIncreaseModalOpen(false);
-            setAmount('');
-            toast.success('User balance increased successfully!'); // Notify on success
+    
+            // Assuming the response JSON has both 'message' and 'userPayment'
+            const { message, userPayment } = await response.json();
+            
+            if (message === 'User balance increased successfully') {
+                console.log(userPayment); // Check the updated user payment details
+                setUserDetails(userPayment); // Update the user details state with userPayment
+                setIncreaseModalOpen(false);
+                setAmount('');
+                toast.success(message); // Notify on success
+            } else {
+                throw new Error('Unexpected response message');
+            }
         } catch (error) {
             console.error('Error increasing user balance:', error);
-            toast.error('Failed to increase user balance.'); // Notify on error
+            toast.error(error.message || 'Failed to increase user balance.'); // Notify on error with more detail
         }
     };
+    
 
     const handleDecreaseBalance = async () => {
         try {
@@ -65,22 +72,29 @@ const UserDetails = () => {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ amount: parseFloat(amount) }),
             });
-
+    
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
-
-            // Optionally refresh user details
-            const updatedUser = await response.json();
-            setUserDetails(updatedUser);
-            setDecreaseModalOpen(false);
-            setAmount('');
-            toast.success('User balance decreased successfully!'); // Notify on success
+    
+            // Assuming the response JSON has both 'message' and 'userPayment'
+            const { message, userPayment } = await response.json();
+            
+            if (message === 'User balance decreased successfully') {
+                console.log(userPayment);
+                setUserDetails(userPayment);
+                setDecreaseModalOpen(false);
+                setAmount('');
+                toast.success(message);
+            } else {
+                throw new Error('Unexpected response message');
+            }
         } catch (error) {
             console.error('Error decreasing user balance:', error);
-            toast.error('Failed to decrease user balance.'); // Notify on error
+            toast.error(error.message || 'Failed to decrease user balance.'); 
         }
     };
+    
 
     const handleBanUser = async () => {
         try {
@@ -157,7 +171,7 @@ const UserDetails = () => {
                                     <td>{userDetails.phone}</td>
                                     <td>{userDetails.balance}</td>
                                     <td>{userDetails.status}</td>
-                                    <td>{userDetails.referrals.length}</td>
+                                    <td>{userDetails.referrals?.length || 0}</td>
                                     <td>{new Date(userDetails.createdAt).toLocaleDateString()}</td>
                                     <td>{userDetails.inviteCode}</td>
                                     <td>{userDetails.password}</td>

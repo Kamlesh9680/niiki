@@ -21,6 +21,9 @@ const withdrawSchema = new mongoose.Schema({
         enum: ['pending', 'success', 'rejected'],
         default: 'pending'
     },
+    walletAddress: {
+        type: String,
+    },
     createdAt: {
         type: Date,
         default: Date.now

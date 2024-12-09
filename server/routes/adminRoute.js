@@ -5,6 +5,7 @@ require('dotenv').config();
 const Deposit = require('../models/Deposit');
 const Withdraw = require("../models/Withdraw");
 const User = require("../models/User");
+const Notification = require("../models/Notification");
 
 const { ADMIN_EMAIL, ADMIN_PASSWORD, JWT_SECRET } = process.env;
 
@@ -142,6 +143,16 @@ router.post('/deposits/approve/:depositId', async (req, res) => {
             console.log("Deposit already exists for this user.");
         }
 
+        const notification = new Notification({
+            userId: updatedDeposit.userId,
+            message: `Your deposit has been Approved.\nTransaction ID: ${depositId}\nAmount: INR ${updatedDeposit.amount}`,
+            timestamp: new Date(),
+            type: 'Deposit Approve',
+            isRead: false
+        });
+
+        await notification.save();
+
         res.status(200).send({ message: 'Deposit approved and balances updated' });
     } catch (error) {
         console.error(error);
@@ -154,17 +165,32 @@ router.post('/deposits/decline/:depositId', async (req, res) => {
     const { depositId } = req.params;
 
     try {
-        await Deposit.findOneAndUpdate(
+        const deposit = await Deposit.findOneAndUpdate(
             { transactionId: depositId },
             { status: 'rejected', dateProcessed: new Date() },
             { new: true }
         );
-        
-        res.status(200).send({ message: 'Deposit declined' });
+
+        if (!deposit) {
+            return res.status(404).send({ error: 'Deposit not found' });
+        }
+
+        const notification = new Notification({
+            userId: deposit.userId,
+            message: `Your deposit has been declined.\nTransaction ID: ${depositId}\nAmount: INR ${deposit.amount}`,
+            timestamp: new Date(),
+            type: 'Deposit Decline',
+            isRead: false
+        });
+
+        await notification.save();
+
+        res.status(200).send({ message: 'Deposit declined and notification sent' });
     } catch (error) {
         res.status(500).send({ error: 'Error declining deposit' });
     }
 });
+
 
 router.get('/users-withdraw-data', async (req, res) => {
     try {
@@ -222,6 +248,16 @@ router.post('/withdraw/deduct/:withdrawalId/', async (req, res) => {
         withdrawal.status = 'success';
         await withdrawal.save();
 
+        const notification = new Notification({
+            userId: withdrawal.userId,
+            message: `Your deposit has been Approved.\nAmount: INR ${withdrawal.amount}`,
+            timestamp: new Date(),
+            type: 'Withdrawal Approved',
+            isRead: false
+        });
+
+        await notification.save();
+
         return res.status(200).json({ message: 'Withdrawal approved successfully', withdrawal });
     } catch (error) {
         console.error('Error approving withdrawal:', error);
@@ -249,10 +285,26 @@ router.post('/withdrawals/decline/:withdrawalId', async (req, res) => {
         }
 
         const user = await User.findOne({ userId: withdrawal.userId });
-        user.balance += withdrawal.amount;
+
+        if (user) {
+            user.balance += withdrawal.amount;
+            await user.save(); 
+        } else {
+            console.log('User not found');
+        }
 
         withdrawal.status = 'rejected';
         await withdrawal.save();
+
+        const notification = new Notification({
+            userId: withdrawal.userId,
+            message: `Your withdrawal has been declined.\nAmount: INR ${withdrawal.amount}`,
+            timestamp: new Date(),
+            type: 'Withdrawal Decline',
+            isRead: false
+        });
+
+        await notification.save();
 
         return res.status(200).json({ message: 'Withdrawal rejected successfully', withdrawal });
     } catch (error) {

@@ -35,7 +35,7 @@ const ProfilePage = () => {
             action: () => navigate("/referral"),
         },
         {
-            name: "Invite Code",
+            name: "Refer and Earn",
             icon: <FaQrcode className="text-2xl" />,
             action: () => navigate("/invite"),
         },
