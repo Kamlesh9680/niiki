@@ -14,7 +14,7 @@ const WalletPage = () => {
     useEffect(() => {
         const fetchWalletDetails = async () => {
             try {
-                const response = await fetch(`/api/user/wallet?userId=${userId}`, {
+                const response = await fetch(`http://localhost:5000/api/user/wallet?userId=${userId}`, {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",
@@ -77,37 +77,39 @@ const WalletPage = () => {
                         {loading ? (
                             <p>Loading transactions...</p>
                         ) : transactions.length > 0 ? (
-                            <table className="min-w-full bg-white border border-gray-200 rounded-md">
-                                <thead>
-                                    <tr className="bg-gray-200 text-gray-600 text-left">
-                                        <th className="py-2 px-4 border-b">Type</th>
-                                        <th className="py-2 px-4 border-b">Amount</th>
-                                        <th className="py-2 px-4 border-b">Status</th>
-                                        <th className="py-2 px-4 border-b">Date</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {transactions.map((tx, index) => (
-                                        <tr key={index} className="hover:bg-gray-100">
-                                            <td className="py-2 px-4 border-b capitalize">{tx.type}</td>
-                                            <td
-                                                className={`py-2 px-4 border-b ${tx.type === "deposit" ? "text-green-500" : "text-red-500"
-                                                    }`}
-                                            >
-                                                {tx.amount.toFixed(2)}
-                                            </td>
-                                            <td className="py-2 px-4 border-b">{tx.status}</td>
-                                            <td className="py-2 px-4 border-b">
-                                                {new Date(tx.createdAt).toLocaleDateString()}
-                                            </td>
+                            <div className="overflow-x-auto"> {/* Make the table scrollable */}
+                                <table className="min-w-full bg-white border border-gray-200 rounded-md">
+                                    <thead>
+                                        <tr className="bg-gray-200 text-gray-600 text-left">
+                                            <th className="py-2 px-4 border-b">Type</th>
+                                            <th className="py-2 px-4 border-b">Amount</th>
+                                            <th className="py-2 px-4 border-b">Status</th>
+                                            <th className="py-2 px-4 border-b">Date</th>
                                         </tr>
-                                    ))}
-                                </tbody>
-                            </table>
+                                    </thead>
+                                    <tbody>
+                                        {transactions.map((tx, index) => (
+                                            <tr key={index} className="hover:bg-gray-100">
+                                                <td className="py-2 px-4 border-b capitalize">{tx.type}</td>
+                                                <td
+                                                    className={`py-2 px-4 border-b ${tx.type === "deposit" ? "text-green-500" : "text-red-500"}`}
+                                                >
+                                                    {tx.amount.toFixed(2)}
+                                                </td>
+                                                <td className="py-2 px-4 border-b">{tx.status}</td>
+                                                <td className="py-2 px-4 border-b">
+                                                    {new Date(tx.createdAt).toLocaleDateString()}
+                                                </td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
                         ) : (
                             <p className="text-gray-500">No transactions found.</p>
                         )}
                     </div>
+
 
                 </div>
             </div>
