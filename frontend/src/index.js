@@ -18,8 +18,6 @@ import AddMoney from "./components/AddMoney";
 import WalletPage from "./components/WalletPage";
 import WithdrawalPage from "./components/WithdrawalPage";
 import ReferralPage from "./components/ReferralPage";
-import BottomNav from './components/BottomNav';
-import Header from './components/Header';
 import AdminLogin from './admin/AdminLogin';
 import Dashboard from './admin/Dashboard';
 import PendingDeposits from './admin/PendingDeposits';

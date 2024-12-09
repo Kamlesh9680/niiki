@@ -6,7 +6,7 @@ import Header from '../components/Header';
 const InvitePage = () => {
     const user = JSON.parse(localStorage.getItem("user"));
     const inviteCode = user?.inviteCode; 
-    const inviteLink = `https://example.com/register?inviteCode=${inviteCode}`; 
+    const inviteLink = `https://niiki.in/register?inviteCode=${inviteCode}`; 
 
     const handleCopy = () => {
         navigator.clipboard.writeText(inviteLink);

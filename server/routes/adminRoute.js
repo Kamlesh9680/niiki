@@ -149,8 +149,6 @@ router.post('/deposits/approve/:depositId', async (req, res) => {
     }
 });
 
-
-
 // Decline deposit
 router.post('/deposits/decline/:depositId', async (req, res) => {
     const { depositId } = req.params;
@@ -161,6 +159,7 @@ router.post('/deposits/decline/:depositId', async (req, res) => {
             { status: 'rejected', dateProcessed: new Date() },
             { new: true }
         );
+        
         res.status(200).send({ message: 'Deposit declined' });
     } catch (error) {
         res.status(500).send({ error: 'Error declining deposit' });
@@ -319,7 +318,6 @@ router.post('/increase-balance/:userId', async (req, res) => {
     }
 });
 
-
 // Decrease User Balance
 router.post('/decrease-balance/:userId', async (req, res) => {
     const { userId } = req.params;
@@ -352,7 +350,6 @@ router.post('/decrease-balance/:userId', async (req, res) => {
         return res.status(500).json({ message: 'Server error' });
     }
 });
-
 
 // Ban User
 router.put('/ban-user/:userId', async (req, res) => {
@@ -395,4 +392,6 @@ router.put('/unban-user/:userId', async (req, res) => {
         return res.status(500).json({ message: 'Server error' });
     }
 });
+
+
 module.exports = router;
