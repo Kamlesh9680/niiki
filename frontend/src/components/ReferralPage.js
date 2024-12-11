@@ -5,8 +5,21 @@ import Header from '../components/Header';
 
 const ReferralPage = () => {
     const [referrals, setReferrals] = useState([]);
+    const [depositStatuses, setDepositStatuses] = useState({});
     const [loading, setLoading] = useState(true);
     const [totalCommission, setTotalCommission] = useState(0);
+
+    const fetchDepositStatus = async (userId) => {
+        try {
+            const response = await fetch(`/api/user/deposit-status/${userId}`);
+            if (!response.ok) throw new Error("Failed to fetch deposit status");
+            const { firstDepositCompleted } = await response.json();
+            return firstDepositCompleted ? "Yes" : "No";
+        } catch (error) {
+            console.error(error);
+            return "Error";
+        }
+    };
 
     useEffect(() => {
         const fetchReferralData = async () => {
@@ -25,6 +38,16 @@ const ReferralPage = () => {
                 const data = await response.json();
                 setReferrals(data.referrals);
                 setTotalCommission(data.referrals.length * 50); // Commission calculation
+
+                // Fetch deposit statuses for each referral
+                const statuses = {};
+                await Promise.all(
+                    data.referrals.map(async (referral) => {
+                        statuses[referral.userId] = await fetchDepositStatus(referral.userId);
+                    })
+                );
+                setDepositStatuses(statuses);
+
                 setLoading(false);
             } catch (error) {
                 console.error(error);
@@ -67,10 +90,18 @@ const ReferralPage = () => {
                                     key={index}
                                     className="flex justify-between py-2 border-b last:border-none"
                                 >
-                                    <span>{referral.email}</span>
-                                    <span className="text-gray-500 text-sm">
-                                        ID: {referral.userId}
-                                    </span>
+                                    <div className="flex flex-col gap-1">
+                                        <span>{referral.email}</span>
+                                        <span>First Deposit Completed:</span>
+                                    </div>
+                                    <div className="flex flex-col gap-1">
+                                        <span className="text-gray-500 text-sm">
+                                            ID: {referral.userId}
+                                        </span>
+                                        <span className="text-gray-500 text-sm">
+                                            {depositStatuses[referral.userId] || "Fetching..."}
+                                        </span>
+                                    </div>
                                 </li>
                             ))}
                         </ul>
