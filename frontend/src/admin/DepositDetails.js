@@ -126,7 +126,7 @@ const DepositDetails = () => {
                             <p>Deposit Screenshot</p>
                             {depositDetails.screenshot ? (
                                 <img
-                                    src={`/api/${depositDetails.screenshot}`}
+                                    src={`/${depositDetails.screenshot}`}
                                     alt="Deposit Screenshot"
                                     style={{ width: '220px', height: 'auto', marginTop: '10px' }}
                                     onClick={openModal}
@@ -167,7 +167,7 @@ const DepositDetails = () => {
                 >
                     <h2>Deposit Screenshot</h2>
                     <img
-                        src={`/api/${depositDetails.screenshot}`}
+                        src={`/${depositDetails.screenshot}`}
                         alt="Full Deposit Screenshot"
                         style={{ width: '100%', height: 'auto' }}
                     />
