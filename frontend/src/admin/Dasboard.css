@@ -193,6 +193,10 @@
     .am-btn-wrap button{
         width: 100%;
     }
+    .details-table{
+        flex-direction: column;
+        gap: 1.5rem;
+    }
 }
 .sidebar-nav-wrap {
     overflow-y: auto;

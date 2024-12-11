@@ -63,7 +63,7 @@ const PendingDeposits = () => {
                                             <td>{deposit.status}</td>
                                             <td>{new Date(deposit.date).toLocaleDateString()}</td>
                                             <td>
-                                                <button className="table-detail-btn" onClick={() => handleViewDetails(deposit.transactionId)}>
+                                                <button className="table-detail-btn" onClick={() => handleViewDetails(deposit.trackId)}>
                                                     View Details
                                                 </button>
                                             </td>

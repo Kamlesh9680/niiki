@@ -97,9 +97,9 @@ const DepositDetails = () => {
         <div className="dashboard-container">
             <Sidebar />
             <div className="main-content">
-                <div className="dash-content-wrap deposit-details text-center flex flex-col items-center gap-5">
+                <div className="dash-content-wrap deposit-details text-center ">
                     <h2>Deposit Details</h2>
-                    <div className="details-table">
+                    <div className="details-table flex items-center justify-around">
                         <table >
                             <thead>
                                 <tr>
@@ -122,6 +122,19 @@ const DepositDetails = () => {
                                 </tr>
                             </tbody>
                         </table>
+                        <div className='dt-py-screenshot'>
+                            <p>Deposit Screenshot</p>
+                            {depositDetails.screenshot ? (
+                                <img
+                                    src={`http://127.0.0.1:5000/${depositDetails.screenshot}`}
+                                    alt="Deposit Screenshot"
+                                    style={{ width: '220px', height: 'auto', marginTop: '10px' }}
+                                    onClick={openModal}
+                                />
+                            ) : (
+                                'No screenshot available'
+                            )}
+                        </div>
                     </div>
                     {isFromPendingPage && (
                         <div className="dt-action-buttons">
@@ -154,11 +167,11 @@ const DepositDetails = () => {
                 >
                     <h2>Deposit Screenshot</h2>
                     <img
-                        src={`/${depositDetails.screenshot}`}
+                        src={`http://127.0.0.1:5000/${depositDetails.screenshot}`}
                         alt="Full Deposit Screenshot"
                         style={{ width: '100%', height: 'auto' }}
                     />
-                    <button className='c-red am-modal-btn' onClick={closeModal} style={{ marginTop: '10px', width: "30%" }}>Close</button>
+                    <button className='theme-btn-border am-modal-btn' onClick={closeModal} style={{ marginTop: '10px', width: "30%" }}>Close</button>
                 </Modal>
             </div>
         </div>

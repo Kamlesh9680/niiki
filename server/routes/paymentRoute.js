@@ -3,7 +3,8 @@ const router = express.Router();
 const Deposit = require('../models/Deposit'); 
 const User = require("../models/User");
 const Withdraw = require("../models/Withdraw");
-
+const multer = require('multer');
+const path = require('path');
 
 const authenticate = (req, res, next) => {
     const token = req.header("Authorization")?.split(" ")[1];
@@ -17,28 +18,77 @@ const authenticate = (req, res, next) => {
         res.status(400).json({ error: "Invalid token." });
     }
 };
+
+const upload = multer({
+    storage: multer.diskStorage({
+        destination: (req, file, cb) => {
+            cb(null, 'uploads');
+        },
+        filename: (req, file, cb) => {
+            const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+            cb(null, file.fieldname + '-' + uniqueSuffix + path.extname(file.originalname));
+        }
+    }),
+    limits: { fileSize: 5 * 1024 * 1024 }, // 5MB limit
+    fileFilter: (req, file, cb) => {
+        const filetypes = /jpeg|jpg|png/;
+        const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
+        const mimetype = filetypes.test(file.mimetype);
+
+        if (mimetype && extname) {
+            return cb(null, true);
+        } else {
+            cb('Error: Images only!');
+        }
+    }
+});
+
 const generateTransactionId = () => {
     const timestamp = Date.now().toString(); // Current timestamp in milliseconds
     const randomPart = Math.floor(Math.random() * 900000) + 100000; // Generate a random 6-digit number
     return `${timestamp.slice(-4)}${randomPart}`; // Combine parts to ensure uniqueness
 };
+
+const checkDepositRecord = async (userId) => {
+    try {
+        const depositCount = await Deposit.countDocuments({ userId, status: 'pending', amount: 10 });
+        return depositCount;
+    } catch (error) {
+        throw new Error('Error checking user deposit history');
+    }
+};
+
 // Route to handle deposit request
-router.post('/deposit-request', async (req, res) => {
+router.post('/deposit-request', upload.single('screenshot'), async (req, res) => {
     const { userId, userEmail, amount, transactionId, status, createdAt } = req.body;
 
+    const firstPendingDeposit = await checkDepositRecord(userId);
+    console.log(firstPendingDeposit);
+
+    if(firstPendingDeposit === 1){
+        return res.status(400).send({ success: false, message: 'First deposit request already submitted' });
+    }
+
+    const screenshotPath = req.file ? req.file.path : null; 
+    if (!screenshotPath) {
+        return res.status(400).json({ success: false, message: 'Screenshot is required' });
+    }
+
     try {
+        const itxid = generateTransactionId();
+
         const newDeposit = new Deposit({
             userId,
             userEmail,
             amount,
+            screenshot: screenshotPath,
             transactionId,
+            trackId: itxid,
             status,
             createdAt
         });
 
-        // Save the deposit to the database
         await newDeposit.save();
-
         res.json({ success: true, message: 'Deposit request saved successfully.' });
     } catch (error) {
         console.error('Error saving deposit:', error);

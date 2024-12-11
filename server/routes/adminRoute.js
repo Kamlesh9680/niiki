@@ -73,8 +73,8 @@ router.get('/deposits/:depositId', async (req, res) => {
     const { depositId } = req.params;
 
     try {
-        // Fetch withdrawal by ID
-        const deposit = await Deposit.find({ transactionId: depositId });
+        
+        const deposit = await Deposit.find({ trackId: depositId });
 
         if (!deposit) {
             return res.status(404).json({ message: 'Deposit not found' });
@@ -98,6 +98,8 @@ const isFirstDeposit = async (userId) => {
     }
 };
 
+
+
 router.post('/deposits/approve/:depositId', async (req, res) => {
     const { depositId } = req.params;
     const { amount, userId } = req.body;
@@ -105,10 +107,11 @@ router.post('/deposits/approve/:depositId', async (req, res) => {
     try {
         // Check if the user has completed their first deposit
         const firstDeposit = await isFirstDeposit(userId);
+        
 
         // Update deposit status
         const updatedDeposit = await Deposit.findOneAndUpdate(
-            { transactionId: depositId },
+            { trackId: depositId },
             { status: 'success', dateProcessed: new Date() },
             { new: true }
         );
@@ -145,7 +148,7 @@ router.post('/deposits/approve/:depositId', async (req, res) => {
 
         const notification = new Notification({
             userId: updatedDeposit.userId,
-            message: `Your deposit has been Approved.\nTransaction ID: ${depositId}\nAmount: INR ${updatedDeposit.amount}`,
+            message: `Your deposit has been Approved.\nTransaction ID: ${updatedDeposit.transactionId}\nAmount: INR ${updatedDeposit.amount}`,
             timestamp: new Date(),
             type: 'Deposit Approve',
             isRead: false
@@ -166,7 +169,7 @@ router.post('/deposits/decline/:depositId', async (req, res) => {
 
     try {
         const deposit = await Deposit.findOneAndUpdate(
-            { transactionId: depositId },
+            { trackId: depositId },
             { status: 'rejected', dateProcessed: new Date() },
             { new: true }
         );
@@ -177,7 +180,7 @@ router.post('/deposits/decline/:depositId', async (req, res) => {
 
         const notification = new Notification({
             userId: deposit.userId,
-            message: `Your deposit has been declined.\nTransaction ID: ${depositId}\nAmount: INR ${deposit.amount}`,
+            message: `Your deposit has been declined.\nTransaction ID: ${deposit.transactionId}\nAmount: INR ${deposit.amount}`,
             timestamp: new Date(),
             type: 'Deposit Decline',
             isRead: false

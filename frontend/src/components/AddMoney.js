@@ -16,6 +16,11 @@ const AddMoney = () => {
     const [userId, setUserId] = useState(null);
     const [userEmail, setUserEmail] = useState(null);
     const [loading, setLoading] = useState(false);
+    const [screenshot, setScreenshot] = useState(null);
+
+    const handleScreenshotChange = (e) => {
+        setScreenshot(e.target.files[0]);
+    };
 
     useEffect(() => {
         const user = JSON.parse(localStorage.getItem("user"));
@@ -48,16 +53,21 @@ const AddMoney = () => {
             userEmail,
             amount,
             transactionId,
+            screenshot,
             status: 'pending',  // Default status
             createdAt: new Date().toISOString()
         };
 
         try {
             // Send the deposit data to the backend via a POST request
-            const response = await axios.post('/api/deposit-request', depositData);
+            const response = await axios.post('/api/deposit-request', depositData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+            });
 
             if (response.data.success) {
-                toast.success("Deposit request submitted successfully!");
+                toast.success("Deposit request submitted successfully! It will be approved within 2 hours.");
             } else {
                 toast.success('Error submitting deposit request.');
             }
@@ -116,6 +126,18 @@ const AddMoney = () => {
                                 required
                             />
                         </div>
+                        <div className="flex flex-col gap-2 mb-3">
+                            <label htmlFor="screenshot">Upload Payment Screenshot</label>
+                            <input
+                                type="file"
+                                id="screenshot"
+                                accept="image/*"
+                                className='border-2 border-customPurple rounded-lg px-4 py-2 text-gray-700'
+                                onChange={handleScreenshotChange}
+                                required
+                            />
+                        </div>
+                        
 
                         <button
                             type="submit"
@@ -124,7 +146,9 @@ const AddMoney = () => {
                         >
                             {loading ? 'Submitting...' : 'Confirm Payment'}
                         </button>
+                        
                     </form>
+                    <p className="text-md text-red-500 mt-4"><b>Note:</b> On fake deposit request case your account will be blocked permanently.</p>
                 </div>
             </div>
             <BottomNav />
