@@ -72,8 +72,8 @@ const AddMoney = () => {
                 toast.success('Error submitting deposit request.');
             }
         } catch (error) {
-            console.error('Error while submitting deposit:', error);
-            alert('An error occurred. Please try again.');
+            console.error('Error while submitting deposit');
+            toast.error('An error occurred. Please try again.');
         } finally {
             setLoading(false);
         }
