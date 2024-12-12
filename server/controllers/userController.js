@@ -5,7 +5,9 @@ const jwt = require('jsonwebtoken');
 
 const addReferralToInviter = async (invitedFrom, newUser) => {
     try {
-        console.log(newUser)
+        if (!newUser.phone) {
+            console.log("New user is missing a phone number.");
+        }
         const inviter = await User.findOne({ inviteCode: invitedFrom });
         if (inviter) {
             inviter.referrals.push({
