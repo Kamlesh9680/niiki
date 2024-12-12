@@ -41,7 +41,7 @@ const ActiveUsers = () => {
                                 <thead>
                                     <tr>
                                         <th>User ID</th>
-                                        <th>Email</th>
+                                        <th>Phone</th>
                                         <th>Status</th>
                                         <th>Date Joined</th>
                                         <th>Action </th>
@@ -51,7 +51,7 @@ const ActiveUsers = () => {
                                     {activeUsers.map(user => (
                                         <tr key={user.id}>
                                             <td>{user.userId}</td>
-                                            <td>{user.email}</td>
+                                            <td>{user.phone}</td>
                                             <td>{user.status}</td>
                                             <td>{new Date(user.createdAt).toLocaleDateString()}</td>
                                             <td>

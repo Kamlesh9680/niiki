@@ -125,6 +125,7 @@ router.post("/withdraw-request", async (req, res) => {
         const withdrawal = new Withdraw({
             userId,
             amount,
+            phone: user.phone,
             transactionId: txid,
             walletAddress,
             status: "pending", // Default status

@@ -151,7 +151,6 @@ const UserDetails = () => {
                             <thead>
                                 <tr>
                                     <th>User ID</th>
-                                    <th>Email:</th>
                                     <th>Username:</th>
                                     <th>Phone:</th>
                                     <th>User Balance:</th>
@@ -166,7 +165,6 @@ const UserDetails = () => {
                             <tbody>
                                 <tr>
                                     <td>{userDetails.userId}</td>
-                                    <td>{userDetails.email}</td>
                                     <td>{userDetails.username}</td>
                                     <td>{userDetails.phone}</td>
                                     <td>{userDetails.balance}</td>

@@ -79,13 +79,13 @@ const WithdrawalDetails = () => {
             <Sidebar />
             <div className="main-content">
                 <div className="dash-content-wrap deposit-details flex flex-col items-center gap-4">
-                    <h2>{withdrawalDetails.userEmail} requested {withdrawalDetails.amount}</h2>
+                    <h2>{withdrawalDetails.phone} requested {withdrawalDetails.amount}</h2>
                     <div className="details-table">
                         <table>
                             <thead>
                                 <tr>
                                     <th>User ID</th>
-                                    <th>User Email</th>
+                                    <th>User Phone</th>
                                     <th>Withdrawal Amount</th>
                                     <th>UPI ID</th>
                                     <th>Status</th>
@@ -95,7 +95,7 @@ const WithdrawalDetails = () => {
                             <tbody>
                                 <tr>
                                     <td>{withdrawalDetails.userId}</td>
-                                    <td>{withdrawalDetails.userEmail}</td>
+                                    <td>{withdrawalDetails.phone}</td>
                                     <td>{withdrawalDetails.amount}</td>
                                     <td>{withdrawalDetails.walletAddress}</td>
                                     <td>{withdrawalDetails.status}</td>

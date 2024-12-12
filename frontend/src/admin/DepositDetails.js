@@ -104,7 +104,7 @@ const DepositDetails = () => {
                             <thead>
                                 <tr>
                                     <th>User ID</th>
-                                    <th>User Email</th>
+                                    <th>User Phone</th>
                                     <th>Transaction ID</th>
                                     <th>Amount</th>
                                     <th>Status</th>
@@ -114,7 +114,7 @@ const DepositDetails = () => {
                             <tbody>
                                 <tr>
                                     <td>{depositDetails.userId}</td>
-                                    <td>{depositDetails.userEmail}</td>
+                                    <td>{depositDetails.phone}</td>
                                     <td>{depositDetails.transactionId}</td>
                                     <td>{depositDetails.amount}</td>
                                     <td>{depositDetails.status}</td>

@@ -14,6 +14,7 @@ const AddMoney = () => {
     const [amount, setAmount] = useState(10);
     const [transactionId, setTransactionId] = useState('');
     const [userId, setUserId] = useState(null);
+    const [phone, setPhone] = useState(null);
     const [loading, setLoading] = useState(false);
     const [screenshot, setScreenshot] = useState(null);
 
@@ -25,6 +26,7 @@ const AddMoney = () => {
         const user = JSON.parse(localStorage.getItem("user"));
         if (user) {
             setUserId(user.id);
+            setPhone(user.phone);
         }
 
         const params = new URLSearchParams(location.search);
@@ -48,6 +50,7 @@ const AddMoney = () => {
         // Prepare the data to send to the backend
         const depositData = {
             userId,
+            phone,
             amount,
             transactionId,
             screenshot,
