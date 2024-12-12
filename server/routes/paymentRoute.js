@@ -60,7 +60,7 @@ const checkDepositRecord = async (userId) => {
 
 // Route to handle deposit request
 router.post('/deposit-request', upload.single('screenshot'), async (req, res) => {
-    const { userId, userEmail, amount, transactionId, status, createdAt } = req.body;
+    const { userId, amount, transactionId, status, createdAt } = req.body;
 
     const firstPendingDeposit = await checkDepositRecord(userId);
     console.log(firstPendingDeposit);
@@ -79,7 +79,6 @@ router.post('/deposit-request', upload.single('screenshot'), async (req, res) =>
 
         const newDeposit = new Deposit({
             userId,
-            userEmail,
             amount,
             screenshot: screenshotPath,
             transactionId,
@@ -125,7 +124,6 @@ router.post("/withdraw-request", async (req, res) => {
         // Save withdrawal request
         const withdrawal = new Withdraw({
             userId,
-            userEmail: user.email,
             amount,
             transactionId: txid,
             walletAddress,
