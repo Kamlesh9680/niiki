@@ -8,7 +8,7 @@ const addReferralToInviter = async (invitedFrom, newUser) => {
         const inviter = await User.findOne({ inviteCode: invitedFrom });
         if (inviter) {
             inviter.referrals.push({
-                email: newUser.email,
+                phone: newUser.phone,
                 userId: newUser.userId,
                 joinedAt: new Date()
             });
@@ -22,17 +22,15 @@ const addReferralToInviter = async (invitedFrom, newUser) => {
 };
 
 const registerUser = async (req, res) => {
-    const { name, email, password, phone, invitedFrom, } = req.body;
+    const { password, phone, invitedFrom, } = req.body;
 
     try {
-        let user = await User.findOne({ email });
+        let user = await User.findOne({ phone });
         if (user) return res.status(400).json({ msg: 'User already exists' });
 
         user = new User({
-            username: name,
-            email,
-            password,
             phone,
+            password,
             invitedFrom,
         });
 
@@ -51,10 +49,10 @@ const registerUser = async (req, res) => {
 };
 
 const loginUser = async (req, res) => {
-    const { email, password } = req.body;
+    const { phone, password } = req.body;
 
     try {
-        const user = await User.findOne({ email });
+        const user = await User.findOne({ phone });
 
         if (!user) return res.status(400).json({ msg: 'User not found' });
 
@@ -72,8 +70,7 @@ const loginUser = async (req, res) => {
             token,
             user: {
                 id: user.userId,
-                username: user.username,
-                email: user.email,
+                phone: user.phone,
                 inviteCode: user.inviteCode
             },
         });

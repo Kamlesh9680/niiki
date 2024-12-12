@@ -56,7 +56,7 @@ const ProfilePage = () => {
                         <img src="/user.png" className="rounded-full" alt='userimg' />
                     </div>
                     <div className="user-txt">
-                        <h3 className="text-xl font-semibold">{user.username || "Guest"}</h3>
+                        <h3 className="text-xl font-semibold">{user.phone || "Guest"}</h3>
                         <p className="mt-1 text-sm">
                             User ID: {user.id || "Not Available"}
                         </p>

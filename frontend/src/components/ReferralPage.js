@@ -91,7 +91,7 @@ const ReferralPage = () => {
                                     className="flex justify-between py-2 border-b last:border-none"
                                 >
                                     <div className="flex flex-col gap-1">
-                                        <span>{referral.email}</span>
+                                        <span>{referral.phone}</span>
                                         <span>First Deposit Completed:</span>
                                     </div>
                                     <div className="flex flex-col gap-1">

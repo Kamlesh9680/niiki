@@ -4,11 +4,8 @@ import { useNavigate, Link } from 'react-router-dom';
 const Register = () => {
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
-        name: "",
-        email: "",
         phone: "",
         password: "",
-        confirmPassword: "",
         invitedFrom: "",
     });
 
@@ -32,16 +29,11 @@ const Register = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const { name, email, phone, password, confirmPassword, invitedFrom } = formData;
+        const { phone, password, invitedFrom } = formData;
 
         // Basic validation
-        if (!name || !email || !phone || !password || !confirmPassword) {
+        if (!phone || !password) {
             setError("All fields are required.");
-            return;
-        }
-
-        if (password !== confirmPassword) {
-            setError("Passwords do not match.");
             return;
         }
 
@@ -52,7 +44,7 @@ const Register = () => {
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ name, email, phone, password, invitedFrom }),
+                body: JSON.stringify({ phone, password, invitedFrom }),
             });
 
             const data = await response.json();
@@ -77,9 +69,12 @@ const Register = () => {
         <div className="page-wrapper max-w-[480px] mx-auto">
             <div className="min-h-screen flex items-center justify-center bg-gray-100">
                 <div className="bg-white shadow-lg rounded-lg w-full max-w-md p-6">
-                    <h2 className="text-2xl font-bold mb-6 text-gray-800 text-center">
-                        Register
-                    </h2>
+                    <div className="flex flex-col items-center">
+                        <img src="/logo2.png" alt="logo" className="w-20" />
+                        <h2 className="text-2xl font-bold mb-6 text-gray-800 text-center">
+                            Register
+                        </h2>
+                    </div>
 
                     {error && (
                         <div className="bg-red-100 text-red-600 text-sm p-2 rounded mb-4">
@@ -88,30 +83,6 @@ const Register = () => {
                     )}
 
                     <form onSubmit={handleSubmit}>
-                        {/* Name */}
-                        <div className="mb-4">
-                            <input
-                                type="text"
-                                name="name"
-                                value={formData.name}
-                                onChange={handleChange}
-                                placeholder="Enter your name"
-                                className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-yellow-400"
-                            />
-                        </div>
-
-                        {/* Email */}
-                        <div className="mb-4">
-                            <input
-                                type="email"
-                                name="email"
-                                value={formData.email}
-                                onChange={handleChange}
-                                placeholder="Enter your email"
-                                className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-yellow-400"
-                            />
-                        </div>
-
                         {/* Phone */}
                         <div className="mb-4">
 
@@ -120,7 +91,9 @@ const Register = () => {
                                 name="phone"
                                 value={formData.phone}
                                 onChange={handleChange}
-                                placeholder="Enter your phone number"
+                                minLength={10}
+                                maxLength={10}
+                                placeholder="Enter your phone number *"
                                 className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-yellow-400"
                             />
                         </div>
@@ -133,20 +106,7 @@ const Register = () => {
                                 name="password"
                                 value={formData.password}
                                 onChange={handleChange}
-                                placeholder="Enter your password"
-                                className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-yellow-400"
-                            />
-                        </div>
-
-                        {/* Confirm Password */}
-                        <div className="mb-4">
-
-                            <input
-                                type="password"
-                                name="confirmPassword"
-                                value={formData.confirmPassword}
-                                onChange={handleChange}
-                                placeholder="Confirm your password"
+                                placeholder="Enter your password *"
                                 className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-yellow-400"
                             />
                         </div>

@@ -1,19 +1,14 @@
 const mongoose = require('mongoose');
 
 const UserSchema = new mongoose.Schema({
-    username: { type: String, required: true },
     userId: { type: String, unique: true },
-    email: { type: String, required: true },
-    password: { type: String, required: true },
     phone: { type: String, required: true },
+    password: { type: String, required: true },
     balance: { type: Number, default: 0 },
     inviteCode: { type: String, unique: true },
     invitedFrom: { type: String },
     createdAt: { type: Date, default: Date.now },
-    lastActive: {
-        type: Date,
-        default: Date.now
-    },
+    lastActive: { type: Date, default: Date.now },
     status: {
         type: String,
         enum: ['active', 'inactive', 'banned'],
@@ -25,7 +20,7 @@ const UserSchema = new mongoose.Schema({
     },
     referrals: [
         {
-            email: { type: String, required: true },
+            phone: { type: String, required: true },
             userId: { type: String, required: true },
             joinedAt: { type: Date, default: Date.now },
         }

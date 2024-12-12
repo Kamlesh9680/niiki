@@ -12,6 +12,7 @@ import ComingSoon from './pages/ComingSoon';
 import DigitalGold from './components/DigitalGold';
 import Register from './components/Register';
 import Login from './components/Login';
+import ForgotPassword from './components/ForgotPass';
 import NotificationsPage from "./components/NotificationsPage";
 import InvitePage from "./components/InvitePage";
 import AddMoney from "./components/AddMoney";
@@ -45,6 +46,7 @@ root.render(
       <Routes>
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/update-pass" element={<ForgotPassword />} />
         <Route path="/admin" element={<AdminLogin />} />
         <Route element={<PrivateRoute />}>
           <Route
