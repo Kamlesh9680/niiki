@@ -17,6 +17,7 @@ const withdrawSchema = new mongoose.Schema({
         enum: ['pending', 'success', 'rejected'],
         default: 'pending'
     },
+    phone: { type: String, required: true },
     walletAddress: {
         type: String,
     },
