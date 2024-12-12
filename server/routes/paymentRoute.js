@@ -141,7 +141,6 @@ router.post("/withdraw-request", async (req, res) => {
     }
 });
 
-
 router.get("/user/wallet", async (req, res) => {
     const { userId } = req.query;
 
@@ -199,7 +198,6 @@ router.get("/user/referrals/:userId", async (req, res) => {
         res.status(500).json({ message: "Failed to fetch referrals" });
     }
 });
-
 
 router.get('/user/deposit-status/:userId', async (req, res) => {
     const { userId } = req.params;
