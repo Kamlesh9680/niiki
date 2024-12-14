@@ -99,14 +99,14 @@ const AddMoney = () => {
                         <h3 className="text-xl text-customPurple">Scan the QR code to complete payment</h3>
                         <div className="flex justify-center my-4">
                             <img
-                                src="/qr2.jpg"
+                                src="/qr3.jpg"
                                 alt="QR Code"
                                 className="w-60 h-60 rounded-lg border-2 border-gray-300"
                             />
                         </div>
                         <a
                             className="upi-pay-now theme-btn-border hover:text-white py-2 rounded-lg text-center block mb-6 hover:bg-customPurple transition duration-300"
-                            href={`upi://pay?pa=niiki.in@axl&cu=INR&am=${amount}`}
+                            href={`upi://pay?pa=niiki.in@ibl&cu=INR&am=${amount}`}
                         >
                             Pay Now With UPI App
                         </a>
