@@ -17,6 +17,7 @@ import NotificationsPage from "./components/NotificationsPage";
 import InvitePage from "./components/InvitePage";
 import AddMoney from "./components/AddMoney";
 import WalletPage from "./components/WalletPage";
+import PdfViewerComponent from "./components/PdfViewerComponent";
 import WithdrawalPage from "./components/WithdrawalPage";
 import ReferralPage from "./components/ReferralPage";
 import AdminLogin from './admin/AdminLogin';
@@ -71,6 +72,7 @@ root.render(
             <Route path="withdraw" element={<WithdrawalPage />} />
             <Route path="referral" element={<ReferralPage />} />
             <Route path="addmoney" element={<AddMoney />} />
+            <Route path="pay-number" element={<PdfViewerComponent />} />
           </Route>
         </Route>
         <Route element={<APrivateRoute />}>

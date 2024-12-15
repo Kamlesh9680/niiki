@@ -110,16 +110,16 @@ const FirstCoinOffer = () => (
 
 const TopButtons = () => {
   const buttonData = [
-    { text: "Pay mobile number", icon: <FaMobileAlt size={24} /> },
-    { text: "Pay to UPI ID or bank", icon: <FaUniversity size={24} /> },
-    { text: "Transaction History", icon: <FaHistory size={24} /> },
-    { text: "Check Balance", icon: <FaWallet size={24} /> },
+    { text: "Pay mobile number", icon: <FaMobileAlt size={24} />, link: '/pay-number' },
+    { text: "Pay to UPI ID or bank", icon: <FaUniversity size={24} />, link: '/comingsoon' },
+    { text: "Transaction History", icon: <FaHistory size={24} />, link: '/comingsoon' },
+    { text: "Check Balance", icon: <FaWallet size={24} />, link: '/comingsoon' },
   ];
 
   return (
     <div className="top-buttons mb-4">
       {buttonData.map((button, index) => (
-        <Link to="/comingsoon" className="flex flex-col items-center " key={index}>
+        <Link to={button.link} className="flex flex-col items-center " key={index}>
           <div className="top-btn-icon mb-2 item-center">{button.icon}</div>
           {button.text}
         </Link>
