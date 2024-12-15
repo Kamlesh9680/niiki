@@ -99,7 +99,7 @@ const AddMoney = () => {
                         <h3 className="text-xl text-customPurple">Scan the QR code to complete payment</h3>
                         <div className="flex justify-center my-4">
                             <img
-                                src="/qr3.jpg"
+                                src="/qr4.jpg"
                                 alt="QR Code"
                                 className="w-60 h-60 rounded-lg border-2 border-gray-300"
                             />
