@@ -104,12 +104,22 @@ const AddMoney = () => {
                                 className="w-60 h-60 rounded-lg border-2 border-gray-300"
                             />
                         </div>
-                        <a
+                        <button
+                            className="copy-upi theme-btn-border hover:text-white py-2 rounded-lg text-center block mb-6 hover:bg-customPurple transition duration-300"
+                            onClick={() => {
+                                const upiID = "q990416519@ybl";
+                                navigator.clipboard.writeText(upiID);
+                                alert(`UPI ID "${upiID}" copied to clipboard!`);
+                            }}
+                        >
+                            Click to Copy UPI ID
+                        </button>
+                        {/* <a
                             className="upi-pay-now theme-btn-border hover:text-white py-2 rounded-lg text-center block mb-6 hover:bg-customPurple transition duration-300"
                             href={`upi://pay?pa=q990416519@ybl&cu=INR&am=${amount}`}
                         >
                             Pay Now With UPI App
-                        </a>
+                        </a> */}
                         <p className="text-gray-700">After payment, enter the transaction ID below.</p>
                     </div>
 
@@ -137,7 +147,7 @@ const AddMoney = () => {
                                 required
                             />
                         </div>
-                        
+
 
                         <button
                             type="submit"
@@ -146,7 +156,7 @@ const AddMoney = () => {
                         >
                             {loading ? 'Submitting...' : 'Confirm Payment'}
                         </button>
-                        
+
                     </form>
                     <p className="text-md text-red-500 mt-4"><b>Note:</b> On fake deposit request case your account will be blocked permanently.</p>
                 </div>
