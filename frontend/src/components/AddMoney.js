@@ -105,7 +105,7 @@ const AddMoney = () => {
                             />
                         </div>
                         <button
-                            className="copy-upi theme-btn-border hover:text-white py-2 rounded-lg text-center block mb-6 hover:bg-customPurple transition duration-300"
+                            className="copy-upi w-full theme-btn-border hover:text-white py-2 rounded-lg text-center block mb-6 hover:bg-customPurple transition duration-300"
                             onClick={() => {
                                 const upiID = "q990416519@ybl";
                                 navigator.clipboard.writeText(upiID);
