@@ -20,8 +20,10 @@ const Investment = () => {
 
                 <div className="top-boxes flex item-stretch mb-5">
                     <div className="i-top-box w-1/2 py-3 px-3 mr-5">
-                        <h4 className="fs-16 fw-400 mb-2 flex items-center gap-4">Mutual Fund <FaAngleRight /></h4>
-                        <p className="fs-18 fw-500">Coming soon</p>
+                        <Link to="/mutual-fund">
+                            <h4 className="fs-16 fw-400 mb-2 flex items-center gap-4">Mutual Fund <FaAngleRight /></h4>
+                            <p className="fs-18 fw-500">Explore</p>
+                        </Link>
                     </div>
                     <div className="i-top-box w-1/2 py-3 px-3">
                         <Link to="/digitalgold">
@@ -33,7 +35,7 @@ const Investment = () => {
 
                 <div className="top-funds mb-8">
                     <h2 className="fs-18 mb-3">Top funds for a balanced portfolio</h2>
-                    <a href="/comingsoon" className="top-fund-box py-3 px-4 mb-4 flex items-center justify-between">
+                    <Link to="/comingsoon" className="top-fund-box py-3 px-4 mb-4 flex items-center justify-between">
                         <div className="top-f-txt">
                             <p className="fs-16 mb-2">Flexi Cap Fund</p>
                             <p className="fs-14 c-gray">Multi cap</p>
@@ -45,8 +47,8 @@ const Investment = () => {
                             </div>
                             <FaAngleRight />
                         </div>
-                    </a>
-                    <a href="/comingsoon" className="top-fund-box py-3 px-4 flex items-center justify-between">
+                    </Link>
+                    <Link to="/comingsoon" className="top-fund-box py-3 px-4 flex items-center justify-between">
                         <div className="top-f-txt">
                             <p className="fs-16 mb-2">Flexi Cap Fund</p>
                             <p className="fs-14 c-gray">Multi cap</p>
@@ -58,7 +60,7 @@ const Investment = () => {
                             </div>
                             <FaAngleRight />
                         </div>
-                    </a>
+                    </Link>
                 </div>
 
                 <div className="redemption w-100 flex flex-col item-center mb-8">

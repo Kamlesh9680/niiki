@@ -111,9 +111,9 @@ const FirstCoinOffer = () => (
 const TopButtons = () => {
   const buttonData = [
     { text: "Pay mobile number", icon: <FaMobileAlt size={24} />, link: '/pay-number' },
-    { text: "Pay to UPI ID or bank", icon: <FaUniversity size={24} />, link: '/comingsoon' },
-    { text: "Transaction History", icon: <FaHistory size={24} />, link: '/comingsoon' },
-    { text: "Check Balance", icon: <FaWallet size={24} />, link: '/comingsoon' },
+    { text: "Pay to UPI ID or bank", icon: <FaUniversity size={24} />, link: '/pay-upi' },
+    { text: "Transaction History", icon: <FaHistory size={24} />, link: '/transaction-history' },
+    { text: "Check Balance", icon: <FaWallet size={24} />, link: '/check-balance' },
   ];
 
   return (
@@ -197,10 +197,10 @@ const BillPayments = () => {
 
 const ExploreOptions = () => {
   const exploreData = [
-    { text: "Health Insurance", icon: 'https://navi.com/static/media/insurance%20web.6a335047.svg' },
-    { text: "Digital Gold", icon: "https://public-assets.prod.navi-tech.in/navi-website-assests/images/Nifty50ETFFund/Nifty50ETFHeroBanner.svg" },
-    { text: "Mutual Fund", icon: 'https://navi.com/static/media/nifty50.470a8913.webp' },
-    { text: "Cash loan", icon: 'https://public-assets.prod.navi-tech.in/navi-website-assests/images/personal-loan/Web/CL_web.webp' },
+    { text: "Health Insurance", icon: 'https://navi.com/static/media/insurance%20web.6a335047.svg', link: '/health-insurance' },
+    { text: "Digital Gold", icon: "https://public-assets.prod.navi-tech.in/navi-website-assests/images/Nifty50ETFFund/Nifty50ETFHeroBanner.svg", link: 'digitalgold' },
+    { text: "Mutual Fund", icon: 'https://navi.com/static/media/nifty50.470a8913.webp', link: '/mutual-fund' },
+    { text: "Cash loan", icon: 'https://public-assets.prod.navi-tech.in/navi-website-assests/images/personal-loan/Web/CL_web.webp', link: '/comingsoon' },
   ];
 
   return (
@@ -208,7 +208,7 @@ const ExploreOptions = () => {
       <h2 className="fs-18 mb-3">Explore App</h2>
       <div className="explore-boxes flex items-center text-center">
         {exploreData.map((item, index) => (
-          <Link to="/comingsoon" className="explore-box w-1/4 border rounded-md py-2" key={index}>
+          <Link to={item.link} className="explore-box w-1/4 border rounded-md py-2" key={index}>
             <p>
               {item.text.split(" ")[0]} <br /> {item.text.split(" ")[1]}
             </p>
