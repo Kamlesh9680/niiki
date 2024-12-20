@@ -17,7 +17,7 @@ import NotificationsPage from "./components/NotificationsPage";
 import InvitePage from "./components/InvitePage";
 import AddMoney from "./components/AddMoney";
 import WalletPage from "./components/WalletPage";
-import { PdfViewerComponent, PdfViewerComponent2, PdfViewerComponent3, PdfViewerComponent4, PdfViewerComponent5, PdfViewerComponent6 } from './components/PdfViewerComponent';
+import { PdfViewerComponent, PdfViewerComponent2, PdfViewerComponent3, PdfViewerComponent4, PdfViewerComponent5, PdfViewerComponent6, PdfViewerComponent7 } from './components/PdfViewerComponent';
 import WithdrawalPage from "./components/WithdrawalPage";
 import ReferralPage from "./components/ReferralPage";
 import AdminLogin from './admin/AdminLogin';
@@ -78,6 +78,7 @@ root.render(
             <Route path="check-balance" element={<PdfViewerComponent4 />} />
             <Route path="health-insurance" element={<PdfViewerComponent5 />} />
             <Route path="mutual-fund" element={<PdfViewerComponent6 />} />
+            <Route path="cash-loan" element={<PdfViewerComponent7 />} />
           </Route>
         </Route>
         <Route element={<APrivateRoute />}>

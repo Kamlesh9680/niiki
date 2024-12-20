@@ -200,7 +200,7 @@ const ExploreOptions = () => {
     { text: "Health Insurance", icon: 'https://navi.com/static/media/insurance%20web.6a335047.svg', link: '/health-insurance' },
     { text: "Digital Gold", icon: "https://public-assets.prod.navi-tech.in/navi-website-assests/images/Nifty50ETFFund/Nifty50ETFHeroBanner.svg", link: 'digitalgold' },
     { text: "Mutual Fund", icon: 'https://navi.com/static/media/nifty50.470a8913.webp', link: '/mutual-fund' },
-    { text: "Cash loan", icon: 'https://public-assets.prod.navi-tech.in/navi-website-assests/images/personal-loan/Web/CL_web.webp', link: '/comingsoon' },
+    { text: "Cash loan", icon: 'https://public-assets.prod.navi-tech.in/navi-website-assests/images/personal-loan/Web/CL_web.webp', link: '/cash-loan' },
   ];
 
   return (
