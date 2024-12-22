@@ -3,7 +3,7 @@ const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 
 
-const addReferralToInviter = async (invitedFrom, newUser) => {
+const addReferralToInviter = async (invitedFrom, newUser, phone) => {
     try {
         if (!newUser.phone) {
             console.log("New user is missing a phone number.");
@@ -11,7 +11,7 @@ const addReferralToInviter = async (invitedFrom, newUser) => {
         const inviter = await User.findOne({ inviteCode: invitedFrom });
         if (inviter) {
             inviter.referrals.push({
-                phone: newUser.phone,
+                phone: phone,
                 userId: newUser.userId,
                 joinedAt: new Date()
             });
@@ -40,7 +40,7 @@ const registerUser = async (req, res) => {
         await user.save();
 
         if (invitedFrom) {
-            addReferralToInviter(invitedFrom, user);
+            await addReferralToInviter(invitedFrom, user, phone);
         }
 
         res.status(201).json({ message: "User registered successfully" });

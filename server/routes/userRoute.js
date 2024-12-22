@@ -9,6 +9,7 @@ router.post('/register', registerUser);
 
 // Login
 router.post('/login', loginUser);
+
 router.post("/forgot-password", async (req, res) => {
     const { phone, newPassword } = req.body;
 

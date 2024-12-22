@@ -18,11 +18,11 @@ mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopol
     .catch((error) => console.log('Error connecting to MongoDB:', error));
 
 app.use(session({
-    secret: '!@#456@@@#', 
+    secret: '!@#456@@@#',
     resave: false,
     saveUninitialized: true,
     store: MongoStore.create({
-        mongoUrl: process.env.MONGO_URI, 
+        mongoUrl: process.env.MONGO_URI,
     }),
     cookie: { secure: false }
 }));
@@ -31,6 +31,7 @@ app.use('/api/', require('./routes/userRoute'));
 app.use('/api/', require('./routes/paymentRoute'));
 app.use('/api/admin', require('./routes/adminRoute'));
 
+    
 // Start server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
