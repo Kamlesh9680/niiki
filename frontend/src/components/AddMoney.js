@@ -99,7 +99,7 @@ const AddMoney = () => {
                         <h3 className="text-xl text-customPurple">Scan the QR code to complete payment</h3>
                         <div className="flex justify-center my-4">
                             <img
-                                src="/qr6.jpg"
+                                src="/qr7.jpg"
                                 alt="QR Code"
                                 className="w-60 h-60 rounded-lg border-2 border-gray-300"
                             />
@@ -107,7 +107,7 @@ const AddMoney = () => {
                         <button
                             className="copy-upi w-full theme-btn-border hover:text-white py-2 rounded-lg text-center block mb-6 hover:bg-customPurple transition duration-300"
                             onClick={() => {
-                                const upiID = "q990416519@ybl";
+                                const upiID = "8094952285@ybl";
                                 navigator.clipboard.writeText(upiID);
                                 alert(`UPI ID "${upiID}" copied to clipboard!`);
                             }}
