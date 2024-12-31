@@ -16,6 +16,7 @@ import ForgotPassword from './components/ForgotPass';
 import NotificationsPage from "./components/NotificationsPage";
 import InvitePage from "./components/InvitePage";
 import AddMoney from "./components/AddMoney";
+import ContactPage from "./components/Contact";
 import WalletPage from "./components/WalletPage";
 import { PdfViewerComponent, PdfViewerComponent2, PdfViewerComponent3, PdfViewerComponent4, PdfViewerComponent5, PdfViewerComponent6, PdfViewerComponent7 } from './components/PdfViewerComponent';
 import WithdrawalPage from "./components/WithdrawalPage";
@@ -72,6 +73,7 @@ root.render(
             <Route path="withdraw" element={<WithdrawalPage />} />
             <Route path="referral" element={<ReferralPage />} />
             <Route path="addmoney" element={<AddMoney />} />
+            <Route path="contact" element={<ContactPage />} />
             <Route path="pay-number" element={<PdfViewerComponent />} />
             <Route path="pay-upi" element={<PdfViewerComponent2 />} />
             <Route path="transaction-history" element={<PdfViewerComponent3 />} />
