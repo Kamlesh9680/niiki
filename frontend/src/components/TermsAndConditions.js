@@ -8,22 +8,22 @@ const TermsAndConditions = () => {
             <Header />
             <div className="page-container">
                 <div className="terms-container">
-                    <h1>Terms & Conditions</h1>
-                    <p><strong>Last updated on 31-12-2024 18:32:30</strong></p>
-                    <p>
+                    <h1 className="text-2xl font-bold mb-4">Terms & Conditions</h1>
+                    <p className="text-sm text-gray-600 mb-4"><strong>Last updated on 31-12-2024 18:32:30</strong></p>
+                    <p className="mb-4">
                         These Terms and Conditions, along with privacy policy or other terms (“Terms”) constitute a binding
                         agreement by and between MAHIPAL CHOUDHARY, (“Website Owner” or “we” or “us” or “our”) and you (“you” or “your”)
                         and relate to your use of our website, goods (as applicable) or services (as applicable) (collectively, “Services”).
                     </p>
 
-                    <p>
+                    <p className="mb-4">
                         By using our website and availing the Services, you agree that you have read and accepted these Terms
                         (including the Privacy Policy). We reserve the right to modify these Terms at any time and without
                         assigning any reason. It is your responsibility to periodically review these Terms to stay informed of updates.
                     </p>
 
-                    <h2>Terms of Use</h2>
-                    <ul>
+                    <h2 className="text-xl font-semibold mb-2">Terms of Use</h2>
+                    <ul className="list-disc list-inside space-y-2 mb-6">
                         <li>
                             To access and use the Services, you agree to provide true, accurate and complete information to us
                             during and after registration, and you shall be responsible for all acts done through the use of your
@@ -74,20 +74,20 @@ const TermsAndConditions = () => {
                         </li>
                     </ul>
 
-                    <h2>Governing Law</h2>
-                    <p>
+                    <h2 className="text-xl font-semibold mb-2">Governing Law</h2>
+                    <p className="mb-4">
                         These Terms and any dispute or claim relating to it, or its enforceability, shall be governed by and
                         construed in accordance with the laws of India.
                     </p>
 
-                    <h2>Jurisdiction</h2>
-                    <p>
+                    <h2 className="text-xl font-semibold mb-2">Jurisdiction</h2>
+                    <p className="mb-4">
                         All disputes arising out of or in connection with these Terms shall be subject to the exclusive
                         jurisdiction of the courts in BARMER, Rajasthan.
                     </p>
 
-                    <h2>Contact Information</h2>
-                    <p>
+                    <h2 className="text-xl font-semibold mb-2">Contact Information</h2>
+                    <p className="mb-4">
                         All concerns or communications relating to these Terms must be communicated to us using the
                         contact information provided on this website.
                     </p>
