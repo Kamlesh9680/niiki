@@ -15,23 +15,23 @@ const PageWrapper = () => {
   const [firstDepositCompleted, setFirstDepositCompleted] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
-  useEffect(() => {
-    const fetchDepositStatus = async () => {
-      try {
-        const user = JSON.parse(localStorage.getItem("user"));
-        if (user) {
-          const response = await axios.get(`/api/user/deposit-status/${user.id}`);
-          const isDepositCompleted = response.data.firstDepositCompleted;
-          setFirstDepositCompleted(isDepositCompleted);
-          setShowModal(!isDepositCompleted);
-        }
-      } catch (error) {
-        console.error("Error checking deposit status:", error);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchDepositStatus = async () => {
+  //     try {
+  //       const user = JSON.parse(localStorage.getItem("user"));
+  //       if (user) {
+  //         const response = await axios.get(`/api/user/deposit-status/${user.id}`);
+  //         const isDepositCompleted = response.data.firstDepositCompleted;
+  //         setFirstDepositCompleted(isDepositCompleted);
+  //         setShowModal(!isDepositCompleted);
+  //       }
+  //     } catch (error) {
+  //       console.error("Error checking deposit status:", error);
+  //     }
+  //   };
 
-    fetchDepositStatus();
-  }, []);
+  //   fetchDepositStatus();
+  // }, []);
 
   return (
     <div className="page-wrapper max-w-[480px] mx-auto">
@@ -39,7 +39,7 @@ const PageWrapper = () => {
       <UPIComponent />
       <PageContainer />
       <BottomNav />
-      <Modal
+      {/* <Modal
         isOpen={showModal}
         contentLabel="Complete First Deposit"
         className="flex items-center justify-center outline-none"
@@ -61,7 +61,7 @@ const PageWrapper = () => {
           </button>
           <p className="text-red-600 font-semibold mt-4 text-center">Earn ₹50/referral</p>
         </div>
-      </Modal>
+      </Modal> */}
 
     </div>
   );
