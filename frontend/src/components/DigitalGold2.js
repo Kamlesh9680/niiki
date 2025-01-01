@@ -117,6 +117,7 @@ const DigitalGold2 = () => {
         let checkoutOptions = {
           paymentSessionId: paymentSessionId,
           redirectTarget: '_modal',
+          merchantName: "Niiki",
         };
 
         if (cashfree && cashfree.checkout) {
