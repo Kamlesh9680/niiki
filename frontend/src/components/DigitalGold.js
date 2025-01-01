@@ -44,6 +44,7 @@ const DigitalGold = () => {
     }
 
   }, []);
+
   const getSessionId = async () => {
     try {
       if (!user) {
@@ -122,6 +123,7 @@ const DigitalGold = () => {
         }
       }
       let userId = user.id;
+      console.log("User id for adding balance", userId)
 
       const balanceResponse = await fetch("/api/admin/add-balance", {
         method: 'POST',
@@ -133,7 +135,6 @@ const DigitalGold = () => {
       });
 
       if (!balanceResponse.ok) {
-
         const errorData = await balanceResponse.json();
         throw new Error(errorData.message || "Failed to add balance");
       }

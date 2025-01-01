@@ -9,10 +9,6 @@ const depositSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    phone: { type: String, required: true },
-    transactionId: {
-        type: String,
-    },
     createdAt: {
         type: Date,
         default: Date.now
