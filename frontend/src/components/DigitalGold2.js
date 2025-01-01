@@ -57,7 +57,7 @@ const DigitalGold2 = () => {
         customerPhone: user.phone,
       };
 
-      let res = await axios.post('http://localhost:5000/api/payment', userData);
+      let res = await axios.post('/api/payment', userData);
 
       if (res.data && res.data.payment_session_id && res.data.order_id) {
         console.log(res.data);
@@ -80,7 +80,7 @@ const DigitalGold2 = () => {
       console.log(orderId);
 
       // Make a POST request to verify the payment
-      const res = await axios.post("http://localhost:5000/api/verify", {
+      const res = await axios.post("/api/verify", {
         orderId: orderId,
       });
 
