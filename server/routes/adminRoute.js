@@ -173,7 +173,6 @@ router.post('/add-balance', async (req, res) => {
         const newDeposit = new Deposit({
             userId,
             amount,
-            createdAt
         });
 
         // Update user balance
