@@ -59,7 +59,6 @@ router.post('/payment', async (req, res) => {
     }
 });
 
-const Cashfree = require('cashfree-sdk');  // Assuming you're using a Node SDK
 
 router.post('/verify', async (req, res) => {
     try {
