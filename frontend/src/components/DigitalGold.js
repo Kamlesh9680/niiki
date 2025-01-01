@@ -84,29 +84,7 @@ const DigitalGold = () => {
       });
 
       if (res && res.data.status === 'success') {
-        if (user && user.id) {
-          let userId = user.id;
-
-          // Make the request to add balance to the user's account
-          const balanceResponse = await fetch("/api/admin/add-balance", {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              amount: amount,
-              userId: userId,
-            })
-          });
-
-          if (!balanceResponse.ok) {
-            
-            const errorData = await balanceResponse.json();
-            throw new Error(errorData.message || "Failed to add balance");
-          }
-
-          console.log("Balance successfully updated");
-        } else {
-          console.log("User data is missing or invalid.");
-        }
+        console.log("verified");
       }
     } catch (error) {
       console.error("Error verifying payment:", error);
@@ -142,8 +120,25 @@ const DigitalGold = () => {
         } else {
           console.error("Cashfree SDK is not initialized or checkout function is undefined");
         }
-
       }
+      let userId = user.id;
+
+      const balanceResponse = await fetch("/api/admin/add-balance", {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          amount: amount,
+          userId: userId,
+        })
+      });
+
+      if (!balanceResponse.ok) {
+
+        const errorData = await balanceResponse.json();
+        throw new Error(errorData.message || "Failed to add balance");
+      }
+
+      console.log("Balance successfully updated");
     } catch (error) {
       console.error("Error during payment initialization:", error);
     }
