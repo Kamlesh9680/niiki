@@ -84,13 +84,12 @@ const DigitalGold2 = () => {
         orderId: orderId,
       });
 
-      // Check if the response and data exist
-      if (res && res.data) {
-        alert("Payment verified");
+      // Check if the response is successful and payment status is SUCCESS
+      if (res && res.data.status === 'success') {
+        alert("Payment verified successfully");
       } else {
         alert("Payment verification failed");
       }
-
     } catch (error) {
       console.error("Error verifying payment:", error);
 
@@ -104,6 +103,7 @@ const DigitalGold2 = () => {
       }
     }
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {

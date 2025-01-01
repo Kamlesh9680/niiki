@@ -91,7 +91,7 @@ router.get('/deposits/:depositId', async (req, res) => {
 const isFirstDeposit = async (userId) => {
     try {
         // Check if the user has any successful deposits
-        const depositCount = await Deposit.countDocuments({ userId, status: 'success' });
+        const depositCount = await Deposit.countDocuments({ userId });
         return depositCount === 0;
     } catch (error) {
         throw new Error('Error checking user deposit history');
@@ -149,6 +149,62 @@ router.post('/deposits/approve/:depositId', async (req, res) => {
         const notification = new Notification({
             userId: updatedDeposit.userId,
             message: `Your deposit has been Approved.\nTransaction ID: ${updatedDeposit.transactionId}\nAmount: INR ${updatedDeposit.amount}`,
+            timestamp: new Date(),
+            type: 'Deposit Approve',
+            isRead: false
+        });
+
+        await notification.save();
+
+        res.status(200).send({ message: 'Deposit approved and balances updated' });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send({ error: 'Error approving deposit' });
+    }
+});
+
+router.post('/add-balance', async (req, res) => {
+    const { amount, userId } = req.body;
+
+    try {
+        
+        const firstDeposit = await isFirstDeposit(userId);
+
+        const newDeposit = new Deposit({
+            userId,
+            amount,
+            createdAt
+        });
+
+        // Update user balance
+        const user = await User.findOneAndUpdate(
+            { userId },
+            {
+                $inc: { balance: amount },
+                $set: { firstDepositCompleted: true }
+            },
+            { new: true }
+        );
+
+
+        if (firstDeposit) {
+
+            const inviter = await User.findOne({ inviteCode: user.invitedFrom });
+            if (inviter) {
+                await User.findOneAndUpdate(
+                    { inviteCode: user.invitedFrom },
+                    { $inc: { balance: 50 } }
+                );
+            } else {
+                console.error("Inviter not found");
+            }
+        } else {
+            console.log("Deposit already exists for this user.");
+        }
+
+        const notification = new Notification({
+            userId: updatedDeposit.userId,
+            message: `Your deposit has been Approved.\nAmount: INR ${amount}`,
             timestamp: new Date(),
             type: 'Deposit Approve',
             isRead: false

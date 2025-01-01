@@ -59,21 +59,55 @@ router.post('/payment', async (req, res) => {
     }
 });
 
+const Cashfree = require('cashfree-sdk');  // Assuming you're using a Node SDK
+
 router.post('/verify', async (req, res) => {
     try {
         let { orderId } = req.body;
         console.log("Received Order ID for verification:", orderId);
 
-        // Assuming Cashfree.PGOrderFetchPayments returns a promise
-        const response = await Cashfree.PGOrderFetchPayments("2023-08-01", orderId);
-        res.json(response.data); // Send the response data to the client
+        // Call Cashfree API to fetch payment details for the order
+        const response = await Cashfree.PGOrderFetchPayments(process.env.CLIENT_ID, orderId);
 
+        if (response && response.data && response.data.payment_status) {
+            const paymentStatus = response.data.payment_status;
+            
+            if (paymentStatus === 'SUCCESS') {
+                // Payment is successful
+                console.log("Payment successful for order:", orderId);
+                res.json({
+                    status: 'success',
+                    message: 'Payment verified successfully',
+                    paymentDetails: response.data
+                });
+            } else {
+                // Payment failed
+                console.log("Payment failed for order:", orderId);
+                res.status(400).json({
+                    status: 'failed',
+                    message: 'Payment verification failed',
+                    paymentDetails: response.data
+                });
+            }
+        } else {
+            // No status or unexpected response from Cashfree
+            console.log("Unexpected response:", response);
+            res.status(400).json({
+                status: 'failed',
+                message: 'Unable to fetch payment status from Cashfree'
+            });
+        }
     } catch (error) {
-        // Log the error and send a proper response to the client
-        console.error(error);
-        res.status(500).json({ message: 'Something went wrong while verifying the payment', error: error.message });
+        // Handle any errors that occur during the process
+        console.error("Error verifying payment:", error);
+        res.status(500).json({
+            status: 'error',
+            message: 'Something went wrong while verifying the payment',
+            error: error.message
+        });
     }
 });
+
 
 
 module.exports = router;
