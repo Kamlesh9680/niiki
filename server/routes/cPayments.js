@@ -46,12 +46,8 @@ router.post('/payment', async (req, res) => {
             "order_note": "Deposit"
         };
 
-        // Create Order
-        console.log("Request being sent to Cashfree:", request);
 
         const response = await Cashfree.PGCreateOrder("2023-08-01", request);
-        console.log(response.data);
-
         res.json(response.data);
     } catch (error) {
         console.error("Payment Error:", error);

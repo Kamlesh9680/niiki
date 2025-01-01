@@ -78,20 +78,35 @@ const DigitalGold = () => {
   const verifyPayment = async (orderId) => {
     try {
       console.log(orderId);
-      
+
       const res = await axios.post("/api/verify", {
         orderId: orderId,
       });
-      
+
       if (res && res.data.status === 'success') {
-        await fetch(`/api/admin/add-balance`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            amount: amount,
-            userId: user.id
-          })
-        });
+        if (user && user.id) {
+          let userId = user.id;
+
+          // Make the request to add balance to the user's account
+          const balanceResponse = await fetch("/api/admin/add-balance", {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              amount: amount,
+              userId: userId,
+            })
+          });
+
+          if (!balanceResponse.ok) {
+            
+            const errorData = await balanceResponse.json();
+            throw new Error(errorData.message || "Failed to add balance");
+          }
+
+          console.log("Balance successfully updated");
+        } else {
+          console.log("User data is missing or invalid.");
+        }
       }
     } catch (error) {
       console.error("Error verifying payment:", error);
