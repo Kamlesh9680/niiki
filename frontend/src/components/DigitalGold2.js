@@ -86,7 +86,14 @@ const DigitalGold2 = () => {
 
       // Check if the response is successful and payment status is SUCCESS
       if (res && res.data.status === 'success') {
-        alert("Payment verified successfully");
+        await fetch(`/api/add-balance`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            amount: amount,
+            userId: user.id
+          })
+        });
       } else {
         alert("Payment verification failed");
       }
