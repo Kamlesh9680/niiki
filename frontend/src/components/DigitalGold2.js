@@ -78,15 +78,13 @@ const DigitalGold2 = () => {
   const verifyPayment = async (orderId) => {
     try {
       console.log(orderId);
-
-      // Make a POST request to verify the payment
+      
       const res = await axios.post("/api/verify", {
         orderId: orderId,
       });
-
-      // Check if the response is successful and payment status is SUCCESS
+      
       if (res && res.data.status === 'success') {
-        await fetch(`/api/add-balance`, {
+        await fetch(`/api/admin/add-balance`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -94,8 +92,6 @@ const DigitalGold2 = () => {
             userId: user.id
           })
         });
-      } else {
-        alert("Payment verification failed");
       }
     } catch (error) {
       console.error("Error verifying payment:", error);
