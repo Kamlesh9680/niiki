@@ -95,7 +95,6 @@ const TermsAndConditions = () => {
             </div>
             <BottomNav />
         </div>
-
     );
 };
 

@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const bodyParser = require('body-parser');
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
 const dotenv = require('dotenv');
@@ -10,6 +11,7 @@ dotenv.config();
 const app = express();
 app.use(cors());
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
@@ -29,6 +31,7 @@ app.use(session({
 
 app.use('/api/', require('./routes/userRoute'));
 app.use('/api/', require('./routes/paymentRoute'));
+app.use('/api/', require('./routes/cPayments'));
 app.use('/api/admin', require('./routes/adminRoute'));
 
     

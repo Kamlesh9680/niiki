@@ -10,11 +10,13 @@ import Investment from './pages/Investment';
 import ProfilePage from './pages/Profile';
 import ComingSoon from './pages/ComingSoon';
 import DigitalGold from './components/DigitalGold';
+import DigitalGold2 from './components/DigitalGold2';
 import Register from './components/Register';
 import Login from './components/Login';
 import ForgotPassword from './components/ForgotPass';
 import NotificationsPage from "./components/NotificationsPage";
 import InvitePage from "./components/InvitePage";
+import Demo from "./components/Demo";
 import AddMoney from "./components/AddMoney";
 import ContactPage from "./components/Contact";
 import TermsAndConditions from "./components/TermsAndConditions";
@@ -67,6 +69,7 @@ root.render(
             <Route path="investment" element={<Investment />} />
             <Route path="profile" element={<ProfilePage />} />
             <Route path="digitalgold" element={<DigitalGold />} />
+            <Route path="digitalgoldt" element={<DigitalGold2 />} />
             <Route path="comingsoon" element={<ComingSoon />} />
             <Route path="notifications" element={<NotificationsPage />} />
             <Route path="invite" element={<InvitePage />} />
@@ -77,6 +80,7 @@ root.render(
             <Route path="contact" element={<ContactPage />} />
             <Route path="terms-conditions" element={<TermsAndConditions />} />
             <Route path="pay-number" element={<PdfViewerComponent />} />
+            <Route path="demo" element={<Demo />} />
             <Route path="pay-upi" element={<PdfViewerComponent2 />} />
             <Route path="transaction-history" element={<PdfViewerComponent3 />} />
             <Route path="check-balance" element={<PdfViewerComponent4 />} />
