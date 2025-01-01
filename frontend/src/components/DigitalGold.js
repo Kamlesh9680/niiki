@@ -57,7 +57,7 @@ const DigitalGold = () => {
         customerPhone: user.phone,
       };
 
-      let res = await axios.post('http://localhost:5000/api/payment', userData);
+      let res = await axios.post('/api/payment', userData);
 
       if (res.data && res.data.payment_session_id && res.data.order_id) {
         console.log(res.data);
