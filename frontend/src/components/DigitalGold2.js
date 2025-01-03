@@ -7,7 +7,7 @@ import Header from "../components/Header";
 import { FaCoins } from "react-icons/fa";
 import { GiGoldBar } from "react-icons/gi";
 
-const DigitalGold2 = () => {
+const DigitalGold = () => {
   const [amount, setAmount] = useState(10);
   const [coins, setCoins] = useState(10);
   const [user, setUser] = useState(null);
@@ -44,6 +44,7 @@ const DigitalGold2 = () => {
     }
 
   }, []);
+
   const getSessionId = async () => {
     try {
       if (!user) {
@@ -78,20 +79,13 @@ const DigitalGold2 = () => {
   const verifyPayment = async (orderId) => {
     try {
       console.log(orderId);
-      
+
       const res = await axios.post("/api/verify", {
         orderId: orderId,
       });
-      
+
       if (res && res.data.status === 'success') {
-        await fetch(`/api/admin/add-balance`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            amount: amount,
-            userId: user.id
-          })
-        });
+        console.log("verified");
       }
     } catch (error) {
       console.error("Error verifying payment:", error);
@@ -117,7 +111,6 @@ const DigitalGold2 = () => {
         let checkoutOptions = {
           paymentSessionId: paymentSessionId,
           redirectTarget: '_modal',
-          merchantName: "Niiki",
         };
 
         if (cashfree && cashfree.checkout) {
@@ -128,8 +121,25 @@ const DigitalGold2 = () => {
         } else {
           console.error("Cashfree SDK is not initialized or checkout function is undefined");
         }
-
       }
+      let userId = user.id;
+      console.log("User id for adding balance", userId)
+
+      const balanceResponse = await fetch("/api/admin/add-balance", {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          amount: amount,
+          userId: userId,
+        })
+      });
+
+      if (!balanceResponse.ok) {
+        const errorData = await balanceResponse.json();
+        throw new Error(errorData.message || "Failed to add balance");
+      }
+
+      console.log("Balance successfully updated");
     } catch (error) {
       console.error("Error during payment initialization:", error);
     }
@@ -215,4 +225,4 @@ const DigitalGold2 = () => {
   );
 };
 
-export default DigitalGold2;
+export default DigitalGold;

@@ -1,148 +1,30 @@
-import React, { useState, useEffect } from "react";
-import axios from 'axios';
-import { load } from '@cashfreepayments/cashfree-js';
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import BottomNav from "../components/BottomNav";
 import Header from "../components/Header";
-import { FaCoins } from "react-icons/fa";
-import { GiGoldBar } from "react-icons/gi";
+import { FaCoins } from "react-icons/fa"; // Icon for coins
+import { GiGoldBar } from "react-icons/gi"; // Icon for gold bars
 
 const DigitalGold = () => {
-  const [amount, setAmount] = useState(10);
-  const [coins, setCoins] = useState(10);
-  const [user, setUser] = useState(null);
-  let cashfree;
+  const [amount, setAmount] = useState(10); // Default minimum amount
+  const [coins, setCoins] = useState(10); // Default coins based on minimum INR (10 INR = 10 coins)
 
   const handleAmountChange = (event) => {
     const value = event.target.value;
     if (value >= 10) {
       setAmount(value);
-      setCoins(value);
+      setCoins(value); // Since 1 INR = 1 Gold Coin, we set coins as the value entered
     } else {
-      setAmount(10);
-      setCoins(10);
-    }
-  };
-  const initializeSDK = async () => {
-    try {
-      cashfree = await load({
-        mode: 'production', // Ensure this matches your intended environment
-      });
-      console.log("Cashfree SDK initialized:", cashfree);
-    } catch (error) {
-      console.error("Error initializing Cashfree SDK:", error);
-    }
-  };
-  initializeSDK();
-
-  useEffect(() => {
-    const storedUser = localStorage.getItem('user');
-    if (storedUser) {
-      setUser(JSON.parse(storedUser));
-    } else {
-      console.error("User not found in localStorage");
-    }
-
-  }, []);
-
-  const getSessionId = async () => {
-    try {
-      if (!user) {
-        alert("User data is not available");
-        return;
-      }
-
-      const userData = {
-        amount: amount,
-        userId: user.id,
-        customerPhone: user.phone,
-      };
-
-      let res = await axios.post('/api/payment', userData);
-
-      if (res.data && res.data.payment_session_id && res.data.order_id) {
-        console.log(res.data);
-        return {
-          paymentSessionId: res.data.payment_session_id,
-          orderId: res.data.order_id,
-        };
-      } else {
-        console.error("Payment session data is missing");
-      }
-    } catch (error) {
-      console.error("Error fetching session ID:", error);
+      setAmount(10); // Enforce minimum value
+      setCoins(10); // Enforce minimum coins
     }
   };
 
-
-
-  const verifyPayment = async (orderId) => {
-    try {
-      console.log(orderId);
-
-      const res = await axios.post("/api/verify", {
-        orderId: orderId,
-      });
-
-      if (res && res.data.status === 'success') {
-        console.log("verified");
-      }
-    } catch (error) {
-      console.error("Error verifying payment:", error);
-
-      if (error.response) {
-        console.error("Server responded with:", error.response.data);
-        alert(`Error: ${error.response.data.message || "Verification failed"}`);
-      } else if (error.request) {
-        alert("No response from server. Please check your connection.");
-      } else {
-        alert("Error setting up the request.");
-      }
-    }
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      let sessionData = await getSessionId();
-      if (sessionData) {
-        const { paymentSessionId, orderId } = sessionData;
-
-        let checkoutOptions = {
-          paymentSessionId: paymentSessionId,
-          redirectTarget: '_modal',
-        };
-
-        if (cashfree && cashfree.checkout) {
-          cashfree.checkout(checkoutOptions).then(() => {
-            console.log("Payment initialized");
-            verifyPayment(orderId);
-          });
-        } else {
-          console.error("Cashfree SDK is not initialized or checkout function is undefined");
-        }
-      }
-      let userId = user.id;
-      console.log("User id for adding balance", userId)
-
-      const balanceResponse = await fetch("/api/admin/add-balance", {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          amount: amount,
-          userId: userId,
-        })
-      });
-
-      if (!balanceResponse.ok) {
-        const errorData = await balanceResponse.json();
-        throw new Error(errorData.message || "Failed to add balance");
-      }
-
-      console.log("Balance successfully updated");
-    } catch (error) {
-      console.error("Error during payment initialization:", error);
-    }
+  const navigate = useNavigate();
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    // Pass amount as query parameter in the URL
+    navigate(`/addmoney?money=${amount}`);
   };
 
   return (
@@ -168,7 +50,7 @@ const DigitalGold = () => {
           <h2 className="text-2xl font-semibold text-yellow-800 text-center mb-4">
             Minimum ₹10
           </h2>
-          <form className="space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-6">
             {/* Amount Input */}
             <div className="flex flex-col space-y-2">
               <label
@@ -200,7 +82,7 @@ const DigitalGold = () => {
 
             {/* Buy Button */}
             <button
-              onClick={handleSubmit}
+              type="submit"
               className="w-full bg-yellow-600 text-white py-3 rounded-lg hover:bg-yellow-700 focus:outline-none transition duration-300 font-semibold text-lg shadow-md"
             >
               Buy Now

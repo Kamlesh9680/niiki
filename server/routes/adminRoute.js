@@ -91,7 +91,7 @@ router.get('/deposits/:depositId', async (req, res) => {
 const isFirstDeposit = async (userId) => {
     try {
         // Check if the user has any successful deposits
-        const depositCount = await Deposit.countDocuments({ userId });
+        const depositCount = await Deposit.countDocuments({ userId, status: 'success' });
         return depositCount === 0;
     } catch (error) {
         throw new Error('Error checking user deposit history');

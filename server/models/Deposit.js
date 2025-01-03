@@ -9,6 +9,23 @@ const depositSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
+    phone: { type: String, required: true },
+    transactionId: {
+        type: String,
+        required: true
+    },
+    trackId: {
+        type: String,
+        required: true
+    },
+    screenshot: {
+        type: String, 
+    },
+    status: {
+        type: String,
+        enum: ['pending', 'success', 'rejected'], 
+        default: 'pending'
+    },
     createdAt: {
         type: Date,
         default: Date.now
