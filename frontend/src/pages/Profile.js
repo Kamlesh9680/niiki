@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { FaWallet, FaUserFriends, FaQrcode, FaAngleRight, FaBell, FaSignOutAlt } from "react-icons/fa";
+import { FaWallet, FaUserFriends, FaQrcode, FaAngleRight, FaBell, FaSignOutAlt, FaPhone  } from "react-icons/fa";
 import BottomNav from '../components/BottomNav';
 import Header from '../components/Header';
 
@@ -44,6 +44,11 @@ const ProfilePage = () => {
             icon: <FaBell className="text-2xl" />,
             action: () => navigate("/notifications"),
         },
+        {
+            name: "Contact",
+            icon: <FaPhone className="text-2xl" />,
+            action: () => navigate("/contact"),
+        },
     ];
 
     return (
@@ -86,6 +91,8 @@ const ProfilePage = () => {
                         Logout
                     </button>
                 </div>
+
+                {/* <Link to='/terms-conditions'></Link> */}
 
             </div>
             <BottomNav />

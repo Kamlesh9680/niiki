@@ -98,8 +98,6 @@ const isFirstDeposit = async (userId) => {
     }
 };
 
-
-
 router.post('/deposits/approve/:depositId', async (req, res) => {
     const { depositId } = req.params;
     const { amount, userId } = req.body;
@@ -248,7 +246,6 @@ router.post('/deposits/decline/:depositId', async (req, res) => {
         res.status(500).send({ error: 'Error declining deposit' });
     }
 });
-
 
 router.get('/users-withdraw-data', async (req, res) => {
     try {
